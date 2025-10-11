@@ -1,0 +1,24 @@
+{
+  "serviceSettings": {
+    "TotalProfessionalExperience": {
+      "TotalDaysInMonth": 30.44
+    },
+    "LoginOnBehalf": {
+      "OnBehalfHiddenTasks": [
+        {
+          "TaskCode": "UserTask_EnterBeneficiaryInformation",
+          "ApplicableGroupCodes": [ 1000, 1200 ],
+          "ApplicableGroupNames": [ "Candidate", "Volunteer" ]
+        },
+        {
+          "TaskCode": "UserTask_ResubmitBeneficiaryInformation",
+          "ApplicableGroupCodes": [ 1000, 1200 ],
+          "ApplicableGroupNames": [ "Candidate", "Volunteer" ]
+        }
+      ]
+    },
+    "BeneficiaryInformation": {
+      "LaunchDate": "2025-07-31"
+    }
+  }
+}

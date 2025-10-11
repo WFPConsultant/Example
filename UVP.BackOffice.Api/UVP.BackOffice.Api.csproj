@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetTargetFramework)</TargetFramework>
+  </PropertyGroup>
+  
+   <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftExtensionsDependencyInjectionAbstractions)" />
+    </ItemGroup>
+
+   <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Core\UVP.Core.Email\UVP.Core.Email.csproj" />
+        <ProjectReference Include="..\..\..\..\Framework\Koa\Connectivity\Email.SendGrid\Koa.Connectivity.Email.SendGrid.csproj" />
+        <ProjectReference Include="..\..\..\..\Framework\Koa\Hosting\AspNetCore\Koa.Hosting.AspNetCore.csproj" />
+        <ProjectReference Include="..\..\..\..\Framework\Koa\Mapping\ObjectMapper.Automapper\Koa.Mapping.ObjectMapper.AutoMapper.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api.Services\UVP.Shared.Micro.Api.Services.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api\UVP.Shared.Micro.Api.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Domain.Services\UVP.Shared.Micro.Domain.Services.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Model\UVP.Shared.Model.Shared\UVP.Shared.Model.Shared.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Http\UVP.Shared.Http.User\UVP.Shared.Http.User.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api.Services\UVP.Shared.Micro.Api.Services.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api\UVP.Shared.Micro.Api.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Repositories\UVP.Shared.Micro.Repositories.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Model\UVP.Shared.Model.BackOffice\UVP.Shared.Model.BackOffice.csproj" />
+        <ProjectReference Include="..\..\Doa\UVP.Profile.Business\UVP.Profile.Business.csproj" />
+        <ProjectReference Include="..\UVP.BackOffice.Business\UVP.BackOffice.Business.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Event\UVP.Shared.Event\UVP.Shared.Event.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api.Services\UVP.Shared.Micro.Api.Services.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api\UVP.Shared.Micro.Api.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Domain.Documents\UVP.Shared.Micro.Domain.Documents.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.EventHandlers\UVP.Shared.Micro.EventHandlers.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Host\UVP.Shared.Micro.Host.csproj" />
+        <ProjectReference Include="..\..\..\..\Shared\Model\UVP.Shared.Model.Integration\UVP.Shared.Model.Integration.csproj" />
+        <ProjectReference Include="..\..\ExternalIntegration\UVP.ExternalIntegration.Business\UVP.ExternalIntegration.Business.csproj" />
+        <ProjectReference Include="..\UVP.ExternalIntegration.Api\UVP.ExternalIntegration.Api.csproj" />
+        <ProjectReference Include="..\UVP.Integration.Api\UVP.Integration.Api.csproj" />
+  </ItemGroup>
+
+ 
+
+</Project>

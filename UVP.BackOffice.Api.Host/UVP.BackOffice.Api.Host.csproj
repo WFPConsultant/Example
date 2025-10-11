@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    <PublishDocumentationFile>true</PublishDocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
+    <ItemGroup>
+      <DocFile Include="bin\$(Configuration)\$(NetTargetFramework)\UVP.BackOffice.Api.Host.xml" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DocFile)" DestinationFolder="$(PublishDir)" SkipUnchangedFiles="false" />
+  </Target>
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(NetTargetFramework)\UVP.BackOffice.Api.Host.xml</DocumentationFile>
+    <UserSecretsId>e3f4707f-03bf-49cd-a4fd-9493e04c4746</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="appsettings.Development.json" />
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="healthchecksdb*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.Development.json" />
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Framework\Koa\Configuration\Secrets.Azure.KeyVault\Koa.Configuration.Secrets.Azure.KeyVault.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Domain.Documents\UVP.Shared.Micro.Domain.Documents.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Entities\UVP.Shared.Micro.Entities.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Host\UVP.Shared.Micro.Host.csproj" />
+    <ProjectReference Include="..\UVP.BackOffice.Api\UVP.BackOffice.Api.csproj" />
+    <ProjectReference Include="..\UVP.ExternalIntegration.Api\UVP.ExternalIntegration.Api.csproj" />
+    <ProjectReference Include="..\UVP.Integration.Api\UVP.Integration.Api.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.2" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.2" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftAspNetCoreAuthenticationJwtBearer)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServer)" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="$(MicrosoftApplicationInsightsAspNetCore)" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="$(AspNetCoreHealthChecksUI)" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
+    <PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="$(SerilogSinksApplicationInsights)" />
+    <PackageReference Include="ClosedXML" Version="0.105.0" />
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="$(MicrosoftExtensionsPlatformAbstractions)" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftAspNetCoreAuthenticationJwtBearer)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="$(MicrosoftEntityFrameworkCoreSqlServer)" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="$(MicrosoftApplicationInsightsAspNetCore)" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI" Version="$(AspNetCoreHealthChecksUI)" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
+    <PackageReference Include="Serilog.AspNetCore" Version="$(SerilogAspNetCore)" />
+    <PackageReference Include="Serilog.Sinks.ApplicationInsights" Version="$(SerilogSinksApplicationInsights)" />
+  </ItemGroup>
+</Project>

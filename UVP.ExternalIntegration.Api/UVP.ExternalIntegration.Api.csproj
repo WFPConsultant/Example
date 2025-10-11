@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetTargetFramework)</TargetFramework>
+    <UserSecretsId>6ee9a958-873a-4896-9eae-b213820fe94b</UserSecretsId>
+  </PropertyGroup>
+
+
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="$(SwashbuckleAspNetCore)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Framework\Koa\Mapping\ObjectMapper.Automapper\Koa.Mapping.ObjectMapper.AutoMapper.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api.Services\UVP.Shared.Micro.Api.Services.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Api\UVP.Shared.Micro.Api.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Domain.Services\UVP.Shared.Micro.Domain.Services.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Host\UVP.Shared.Micro.Host.csproj" />
+    <ProjectReference Include="..\..\Doa\UVP.Profile.Business\UVP.Profile.Business.csproj" />
+    <ProjectReference Include="..\..\ExternalIntegration\UVP.ExternalIntegration.Business\UVP.ExternalIntegration.Business.csproj" />
+    <ProjectReference Include="..\..\ExternalIntegration\UVP.ExternalIntegration.Domain\UVP.ExternalIntegration.Domain.csproj" />
+    <ProjectReference Include="..\..\ExternalIntegration\UVP.ExternalIntegration.ErrorValidationFramework\UVP.ExternalIntegration.ErrorValidationFramework.csproj" />
+  </ItemGroup>
+
+</Project>
