@@ -1,11 +1,14 @@
-namespace UVP.ExternalIntegration.Domain.Integration.DTOs
+namespace UVP.ExternalIntegration.Domain.Integration.DTOs.EarthMed
 {
     using System;
     using System.Collections.Generic;
     using Newtonsoft.Json;
 
-    //todo: variable naming will be removed
-    public class EarthMedGetStatusResponseDto 
+    /// <summary>
+    /// Response DTO for EARTHMED clearance status queries.
+    /// Supports batch status retrieval with pagination.
+    /// </summary>
+    public class EarthMedGetStatusResponseDto
     {
         [JsonProperty("IsSuccess")]
         public bool IsSuccess { get; set; }
