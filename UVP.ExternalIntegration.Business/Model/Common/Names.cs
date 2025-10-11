@@ -1,0 +1,119 @@
+namespace UVP.ExternalIntegration.Business.Model.Common
+{
+    using System;
+
+    public class Names
+    {
+        public NamesItems[] Items { get; set; }
+    }
+    public class NamesItems
+    {
+        public long? PersonNameId { get; set; }
+        public string? EffectiveStartDate { get; set; }
+        public string? EffectiveEndDate { get; set; }
+        public string? LegislationCode { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public string? Title { get; set; }
+        public string? PreNameAdjunct { get; set; }
+        public string? Suffix { get; set; }
+        public string? MiddleNames { get; set; }
+        public string? Honors { get; set; }
+        public string? KnownAs { get; set; }
+        public string? PreviousLastName { get; set; }
+        public string? DisplayName { get; set; }
+        public string? OrderName { get; set; }
+        public string? ListName { get; set; }
+        public string? FullName { get; set; }
+        public string? MilitaryRank { get; set; }
+        public string? NameLanguage { get; set; }
+        public string? NameInformation1 { get; set; }
+        public string? NameInformation2 { get; set; }
+        public string? NameInformation3 { get; set; }
+        public string? NameInformation4 { get; set; }
+        public string? NameInformation5 { get; set; }
+        public string? NameInformation6 { get; set; }
+        public string? NameInformation7 { get; set; }
+        public string? NameInformation8 { get; set; }
+        public string? NameInformation9 { get; set; }
+        public string? NameInformation10 { get; set; }
+        public string? NameInformation11 { get; set; }
+        public string? NameInformation12 { get; set; }
+        public string? NameInformation13 { get; set; }
+        public string? NameInformation14 { get; set; }
+        public string? NameInformation15 { get; set; }
+        public string? NameInformation16 { get; set; }
+        public string? NameInformation17 { get; set; }
+        public string? NameInformation18 { get; set; }
+        public string? NameInformation19 { get; set; }
+        public string? NameInformation20 { get; set; }
+        public string? NameInformation21 { get; set; }
+        public string? NameInformation22 { get; set; }
+        public string? NameInformation23 { get; set; }
+        public string? NameInformation24 { get; set; }
+        public string? NameInformation25 { get; set; }
+        public string? NameInformation26 { get; set; }
+        public string? NameInformation27 { get; set; }
+        public string? NameInformation28 { get; set; }
+        public string? NameInformation29 { get; set; }
+        public string? NameInformation30 { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? CreationDate { get; set; }
+        public string? LastUpdatedBy { get; set; }
+        public DateTime? LastUpdateDate { get; set; }
+        public long? LocalPersonNameId { get; set; }
+        public string? LocalEffectiveStartDate { get; set; }
+        public string? LocalEffectiveEndDate { get; set; }
+        public string? LocalLegislationCode { get; set; }
+        public string? LocalLastName { get; set; }
+        public string? LocalFirstName { get; set; }
+        public string? LocalTitle { get; set; }
+        public string? LocalPreNameAdjunct { get; set; }
+        public string? LocalSuffix { get; set; }
+        public string? LocalMiddleNames { get; set; }
+        public string? LocalHonors { get; set; }
+        public string? LocalKnownAs { get; set; }
+        public string? LocalPreviousLastName { get; set; }
+        public string? LocalDisplayName { get; set; }
+        public string? LocalOrderName { get; set; }
+        public string? LocalListName { get; set; }
+        public string? LocalFullName { get; set; }
+        public string? LocalMilitaryRank { get; set; }
+        public string? LocalNameLanguage { get; set; }
+        public string? LocalNameInformation1 { get; set; }
+        public string? LocalNameInformation2 { get; set; }
+        public string? LocalNameInformation3 { get; set; }
+        public string? LocalNameInformation4 { get; set; }
+        public string? LocalNameInformation5 { get; set; }
+        public string? LocalNameInformation6 { get; set; }
+        public string? LocalNameInformation7 { get; set; }
+        public string? LocalNameInformation8 { get; set; }
+        public string? LocalNameInformation9 { get; set; }
+        public string? LocalNameInformation10 { get; set; }
+        public string? LocalNameInformation11 { get; set; }
+        public string? LocalNameInformation12 { get; set; }
+        public string? LocalNameInformation13 { get; set; }
+        public string? LocalNameInformation14 { get; set; }
+        public string? LocalNameInformation15 { get; set; }
+        public string? LocalNameInformation16 { get; set; }
+        public string? LocalNameInformation17 { get; set; }
+        public string? LocalNameInformation18 { get; set; }
+        public string? LocalNameInformation19 { get; set; }
+        public string? LocalNameInformation20 { get; set; }
+        public string? LocalNameInformation21 { get; set; }
+        public string? LocalNameInformation22 { get; set; }
+        public string? LocalNameInformation23 { get; set; }
+        public string? LocalNameInformation24 { get; set; }
+        public string? LocalNameInformation25 { get; set; }
+        public string? LocalNameInformation26 { get; set; }
+        public string? LocalNameInformation27 { get; set; }
+        public string? LocalNameInformation28 { get; set; }
+        public string? LocalNameInformation29 { get; set; }
+        public string? LocalNameInformation30 { get; set; }
+        public string? LocalCreatedBy { get; set; }
+        public DateTime? LocalCreationDate { get; set; }
+        public string? LocalLastUpdatedBy { get; set; }
+        public DateTime? LocalLastUpdateDate { get; set; }
+        public WorkerLink[] Links { get; set; }
+    }
+}

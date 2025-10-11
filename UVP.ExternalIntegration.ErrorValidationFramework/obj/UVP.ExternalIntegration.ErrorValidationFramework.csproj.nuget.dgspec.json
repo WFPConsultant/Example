@@ -1,0 +1,288 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.ErrorValidationFramework\\UVP.ExternalIntegration.ErrorValidationFramework.csproj": {}
+  },
+  "projects": {
+    "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\Koa.Platform.Extensions.csproj": {
+      "version": "1.0.0-servicing-20251010-99",
+      "restore": {
+        "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\Koa.Platform.Extensions.csproj",
+        "projectName": "Koa.Platform.Extensions",
+        "projectPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\Koa.Platform.Extensions.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\NuGet.Config",
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/ICCUNV/UVP/_packaging/dotnet-nuget/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1605",
+            "NU5105",
+            "NU5125"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "StyleCop.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
+            "StyleCop.Analyzers.Unstable": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.1.114, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\Koa.Platform.Injection.csproj": {
+      "version": "1.0.0-servicing-20251010-99",
+      "restore": {
+        "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\Koa.Platform.Injection.csproj",
+        "projectName": "Koa.Platform.Injection",
+        "projectPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\Koa.Platform.Injection.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\NuGet.Config",
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/ICCUNV/UVP/_packaging/dotnet-nuget/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\Koa.Platform.Extensions.csproj": {
+                "projectPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Extensions\\Koa.Platform.Extensions.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1605",
+            "NU5105",
+            "NU5125"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "StyleCop.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
+            "StyleCop.Analyzers.Unstable": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.1.114, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.ErrorValidationFramework\\UVP.ExternalIntegration.ErrorValidationFramework.csproj": {
+      "version": "1.0.0-servicing-20251010-99",
+      "restore": {
+        "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.ErrorValidationFramework\\UVP.ExternalIntegration.ErrorValidationFramework.csproj",
+        "projectName": "UVP.ExternalIntegration.ErrorValidationFramework",
+        "projectPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.ErrorValidationFramework\\UVP.ExternalIntegration.ErrorValidationFramework.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.ErrorValidationFramework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\NuGet.Config",
+          "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/ICCUNV/UVP/_packaging/dotnet-nuget/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\Koa.Platform.Injection.csproj": {
+                "projectPath": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Framework\\Koa\\Platform\\Injection\\Koa.Platform.Injection.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "noWarn": [
+            "NU1605",
+            "NU5105",
+            "NU5125"
+          ],
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.16, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
+            "StyleCop.Analyzers": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.118, )"
+            },
+            "StyleCop.Analyzers.Unstable": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.1.114, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(NetTargetFramework)</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Http\BaseHttp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="$(MicrosoftExtensionsLoggingAbstractions)" />
+    <PackageReference Include="Newtonsoft.Json" Version="$(NewtonsoftJson)" />
+    <PackageReference Include="NLog" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Framework\Koa\Persistence\EntityRepository\Koa.Persistence.EntityRepository.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Koa\Platform\Injection\Koa.Platform.Injection.csproj" />
+    <ProjectReference Include="..\..\..\..\Framework\Koa\Serialization\Json\Koa.Serialization.Json.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Domain.Services.Contracts\UVP.Shared.Micro.Domain.Services.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Entities\UVP.Shared.Micro.Entities.csproj" />
+    <ProjectReference Include="..\..\..\..\Shared\Model\UVP.Shared.Model.Doa\UVP.Shared.Model.Doa.csproj" />
+    <ProjectReference Include="..\UVP.ExternalIntegration.Domain\UVP.ExternalIntegration.Domain.csproj" />
+    <ProjectReference Include="..\UVP.ExternalIntegration.ErrorValidationFramework\UVP.ExternalIntegration.ErrorValidationFramework.csproj" />
+  </ItemGroup>
+
+</Project>
