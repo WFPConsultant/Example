@@ -16,4 +16,8 @@
     <ProjectReference Include="..\..\..\..\Shared\Micro\UVP.Shared.Micro.Entities\UVP.Shared.Micro.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\Integration\" />
+  </ItemGroup>
+
 </Project>

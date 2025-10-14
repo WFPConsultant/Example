@@ -30,12 +30,6 @@ namespace UVP.ExternalIntegration.Domain.Entity.Doa
 
         public virtual DbSet<ErpErrorFrameworkAPITransaction> ErpErrorFrameworkAPITransaction { get; set; }
 
-        public virtual DbSet<IntegrationInvocation> IntegrationInvocations { get; set; }
-
-        public virtual DbSet<IntegrationInvocationLog>  IntegrationInvocationLogs { get; set; }
-
-        public virtual DbSet<IntegrationEndpointConfiguration> IntegrationEndpointConfigurations { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlServer(this.config.GetConnectionString("DefaultConnection"));
     }
