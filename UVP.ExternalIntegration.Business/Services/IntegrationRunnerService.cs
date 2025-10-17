@@ -15,7 +15,7 @@ namespace UVP.ExternalIntegration.Business.Services
     public class IntegrationRunnerService : IIntegrationRunnerService
     {
         private readonly IIntegrationInvocationRepository _invocationRepo;
-        private readonly IGenericRepository<IntegrationInvocationLog> _invocationLogRepo;
+        private readonly IGenericRepository<IntegrationInvocationLogModel> _invocationLogRepo;
         private readonly IIntegrationEndpointRepository _endpointRepo;
         private readonly IRenderingEngineService _renderingEngine;
         private readonly IHttpConnectorService _httpConnector;
@@ -26,7 +26,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
         public IntegrationRunnerService(
             IIntegrationInvocationRepository invocationRepo,
-            IGenericRepository<IntegrationInvocationLog> invocationLogRepo,
+            IGenericRepository<IntegrationInvocationLogModel> invocationLogRepo,
             IIntegrationEndpointRepository endpointRepo,
             IRenderingEngineService renderingEngine,
             IHttpConnectorService httpConnector,
@@ -59,7 +59,7 @@ namespace UVP.ExternalIntegration.Business.Services
                 return false;
             }
 
-            IntegrationEndpointConfiguration? endpoint = null;
+            IntegrationEndpointConfigurationModel? endpoint = null;
 
             try
             {
@@ -203,7 +203,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
         private async Task LogRequestAsync(long invocationId, string? payload, int sequence)
         {
-            var requestLog = new IntegrationInvocationLog
+            var requestLog = new IntegrationInvocationLogModel
             {
                 IntegrationInvocationId = invocationId,
                 RequestPayload = payload,
@@ -221,7 +221,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
         private async Task LogResponseAsync(long invocationId, HttpResponseDto response, int sequence, bool isLastTransaction)
         {
-            var responseLog = new IntegrationInvocationLog
+            var responseLog = new IntegrationInvocationLogModel
             {
                 IntegrationInvocationId = invocationId,
                 RequestPayload = null,
@@ -246,7 +246,7 @@ namespace UVP.ExternalIntegration.Business.Services
             await _invocationLogRepo.SaveChangesAsync();
         }
 
-        private async Task HandleSuccessResponseAsync(IntegrationInvocation invocation, HttpResponseDto response)
+        private async Task HandleSuccessResponseAsync(IntegrationInvocationModel invocation, HttpResponseDto response)
         {
             invocation.IntegrationStatus = IntegrationStatus.SUCCESS.ToString();
 
@@ -263,8 +263,8 @@ namespace UVP.ExternalIntegration.Business.Services
         }
 
         private async Task HandleFailedResponseAsync(
-            IntegrationInvocation invocation,
-            IntegrationEndpointConfiguration endpoint,
+            IntegrationInvocationModel invocation,
+            IntegrationEndpointConfigurationModel endpoint,
             bool isLastTransaction,
             int attemptedRetries)
         {
@@ -289,13 +289,13 @@ namespace UVP.ExternalIntegration.Business.Services
 
         private async Task HandleExecutionExceptionAsync(
             long invocationId,
-            IntegrationInvocation invocation,
-            IntegrationEndpointConfiguration? endpoint,
+            IntegrationInvocationModel invocation,
+            IntegrationEndpointConfigurationModel? endpoint,
             Exception ex)
         {
             // Log error
             var nextSequence = await GetNextLogSequenceAsync(invocationId);
-            var errorLog = new IntegrationInvocationLog
+            var errorLog = new IntegrationInvocationLogModel
             {
                 IntegrationInvocationId = invocationId,
                 RequestPayload = null,
@@ -362,7 +362,7 @@ namespace UVP.ExternalIntegration.Business.Services
             return string.Join(" | ", parts);
         }
 
-        private string BuildUrlWithPathParameters(IntegrationEndpointConfiguration endpoint, object model)
+        private string BuildUrlWithPathParameters(IntegrationEndpointConfigurationModel endpoint, object model)
         {
             var baseUrl = endpoint.BaseUrl.TrimEnd('/');
             var pathTemplate = endpoint.PathTemplate.TrimStart('/');

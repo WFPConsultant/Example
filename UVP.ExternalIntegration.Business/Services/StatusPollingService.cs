@@ -18,8 +18,8 @@ namespace UVP.ExternalIntegration.Business.Services
     public class StatusPollingService : IStatusPollingService
     {
         private readonly IGenericRepository<DoaCandidateClearance> _clearancesRepo;
-        private readonly IGenericRepository<DoaCandidateClearancesOneHR> _oneHrRepo;
-        private readonly IGenericRepository<IntegrationInvocationLog> _logRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesOneHRModel> _oneHrRepo;
+        private readonly IGenericRepository<IntegrationInvocationLogModel> _logRepo;
         private readonly IIntegrationInvocationRepository _invocationRepo;
         private readonly IIntegrationEndpointRepository _endpointRepo;
         private readonly IInvocationManagerService _invocationManager;
@@ -28,8 +28,8 @@ namespace UVP.ExternalIntegration.Business.Services
 
         public StatusPollingService(
             IGenericRepository<DoaCandidateClearance> clearancesRepo,
-            IGenericRepository<DoaCandidateClearancesOneHR> oneHrRepo,
-            IGenericRepository<IntegrationInvocationLog> logRepo,
+            IGenericRepository<DoaCandidateClearancesOneHRModel> oneHrRepo,
+            IGenericRepository<IntegrationInvocationLogModel> logRepo,
             IIntegrationInvocationRepository invocationRepo,
             IIntegrationEndpointRepository endpointRepo,
             IInvocationManagerService invocationManager,
@@ -84,7 +84,7 @@ namespace UVP.ExternalIntegration.Business.Services
                         i.IntegrationType == integrationType &&
                         i.IntegrationOperation == operation);
 
-                    IntegrationInvocation? matched = null;
+                    IntegrationInvocationModel? matched = null;
                     foreach (var inv in invocations.OrderByDescending(i => i.UpdatedOn ?? i.CreatedOn))
                     {
                         var logs = await _logRepo.FindAsync(l => l.IntegrationInvocationId == inv.IntegrationInvocationId);
@@ -193,7 +193,7 @@ namespace UVP.ExternalIntegration.Business.Services
                         i.IntegrationType == integrationType &&
                         i.IntegrationOperation == operation);
 
-                    IntegrationInvocation? matched = null;
+                    IntegrationInvocationModel? matched = null;
                     foreach (var inv in invocations.OrderByDescending(i => i.UpdatedOn ?? i.CreatedOn))
                     {
                         var logs = await _logRepo.FindAsync(l => l.IntegrationInvocationId == inv.IntegrationInvocationId);

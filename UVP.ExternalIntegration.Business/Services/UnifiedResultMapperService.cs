@@ -17,19 +17,19 @@ namespace UVP.ExternalIntegration.Business.Services
     /// </summary>
     public class UnifiedResultMapperService : IResultMapperService
     {
-        private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
-        private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
-        private readonly IGenericRepository<IntegrationInvocationLog> _invocationLogRepo;
-        private readonly IGenericRepository<Candidate> _doaCandidateRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesModel> _clearancesRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesOneHRModel> _clearancesOneHRRepo;
+        private readonly IGenericRepository<IntegrationInvocationLogModel> _invocationLogRepo;
+        private readonly IGenericRepository<CandidateModel> _doaCandidateRepo;
         private readonly IResultMappingStrategyFactory _strategyFactory;
         private readonly IResultFieldExtractor _fieldExtractor;
         private readonly ILogger _logger = Log.ForContext<UnifiedResultMapperService>();
 
         public UnifiedResultMapperService(
-            IGenericRepository<DoaCandidateClearances> clearancesRepo,
-            IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
-            IGenericRepository<IntegrationInvocationLog> invocationLogRepo,
-            IGenericRepository<Candidate> doaCandidateRepo,
+            IGenericRepository<DoaCandidateClearancesModel> clearancesRepo,
+            IGenericRepository<DoaCandidateClearancesOneHRModel> clearancesOneHRRepo,
+            IGenericRepository<IntegrationInvocationLogModel> invocationLogRepo,
+            IGenericRepository<CandidateModel> doaCandidateRepo,
             IResultFieldExtractor fieldExtractor,
             IResultMappingStrategyFactory strategyFactory)
         {
@@ -41,7 +41,7 @@ namespace UVP.ExternalIntegration.Business.Services
             _strategyFactory = strategyFactory;
         }
 
-        public async Task ProcessResponseAsync(IntegrationInvocation invocation, string response, string integrationType)
+        public async Task ProcessResponseAsync(IntegrationInvocationModel invocation, string response, string integrationType)
         {
             var strategy = _strategyFactory.GetStrategy(integrationType);
             if (strategy == null)
@@ -72,7 +72,7 @@ namespace UVP.ExternalIntegration.Business.Services
             }
         }
 
-        private async Task HandleCreateClearanceAsync(IntegrationInvocation invocation, string response, IResultMappingStrategy strategy)
+        private async Task HandleCreateClearanceAsync(IntegrationInvocationModel invocation, string response, IResultMappingStrategy strategy)
         {
             var requestId = strategy.ExtractRequestId(response);
             if (string.IsNullOrWhiteSpace(requestId))
@@ -86,7 +86,7 @@ namespace UVP.ExternalIntegration.Business.Services
             _logger.Information("[{System}] CYCLE 1 - CREATE: RequestId={RequestId}", strategy.SystemCode, requestId);
 
             // Create OneHR tracking record
-            var oneHr = new DoaCandidateClearancesOneHR
+            var oneHr = new DoaCandidateClearancesOneHRModel
             {
                 DoaCandidateId = doaCandidateId,
                 CandidateId = candidateId,
@@ -153,13 +153,13 @@ namespace UVP.ExternalIntegration.Business.Services
             //    UpdatedDate = DateTime.UtcNow,
             //    UpdateUser = "System" // You might want to set this
             //};
-            await _clearancesRepo.AddAsync(clearance);
-            await _clearancesRepo.SaveChangesAsync();
+            //await _clearancesRepo.AddAsync(clearance);
+            //await _clearancesRepo.SaveChangesAsync();
 
             _logger.Information("[{System}] CYCLE 1 Complete: StatusCode=CLEARANCE_REQUESTED", strategy.SystemCode);
         }
 
-        private async Task HandleStatusCheckAsync(IntegrationInvocation invocation, string response, IResultMappingStrategy strategy)
+        private async Task HandleStatusCheckAsync(IntegrationInvocationModel invocation, string response, IResultMappingStrategy strategy)
         {
             if (strategy.IsMultiResultStatusResponse(response))
             {
@@ -171,7 +171,7 @@ namespace UVP.ExternalIntegration.Business.Services
             }
         }
 
-        private async Task HandleSingleResultStatusAsync(IntegrationInvocation invocation, string response, IResultMappingStrategy strategy)
+        private async Task HandleSingleResultStatusAsync(IntegrationInvocationModel invocation, string response, IResultMappingStrategy strategy)
         {
             var requestPayload = await GetLatestRequestPayloadAsync(invocation.IntegrationInvocationId);
             if (requestPayload == null)
@@ -202,7 +202,7 @@ namespace UVP.ExternalIntegration.Business.Services
             await UpdateStatusCompletionAsync(oneHr, responseId, strategy);
         }
 
-        private async Task HandleMultiResultStatusAsync(IntegrationInvocation invocation, string response, IResultMappingStrategy strategy)
+        private async Task HandleMultiResultStatusAsync(IntegrationInvocationModel invocation, string response, IResultMappingStrategy strategy)
         {
             var results = await strategy.ExtractStatusResultsAsync(response);
 
@@ -234,7 +234,7 @@ namespace UVP.ExternalIntegration.Business.Services
             _logger.Information("[{System}] CYCLE 2 Complete: Processed {Success} records", strategy.SystemCode, successCount);
         }
 
-        private async Task HandleAcknowledgeAsync(IntegrationInvocation invocation, IResultMappingStrategy strategy)
+        private async Task HandleAcknowledgeAsync(IntegrationInvocationModel invocation, IResultMappingStrategy strategy)
         {
             if (!strategy.RequiresAcknowledgeCycle)
             {
@@ -292,7 +292,7 @@ namespace UVP.ExternalIntegration.Business.Services
             //}
         }
 
-        private async Task UpdateStatusCompletionAsync(DoaCandidateClearancesOneHR oneHr, string? responseId,
+        private async Task UpdateStatusCompletionAsync(DoaCandidateClearancesOneHRModel oneHr, string? responseId,
             IResultMappingStrategy strategy, DateTime? statusDate = null)
         {
             // Update OneHR record
@@ -432,7 +432,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
         //    return (doaCandidateId, candidateId);
         //}
-        private async Task<(long doaCandidateId, long candidateId)> ResolveIdsFromInvocationAsync(IntegrationInvocation invocation)
+        private async Task<(long doaCandidateId, long candidateId)> ResolveIdsFromInvocationAsync(IntegrationInvocationModel invocation)
         {
             var firstRequestLog = (await _invocationLogRepo.FindAsync(l =>
                     l.IntegrationInvocationId == invocation.IntegrationInvocationId &&
@@ -512,7 +512,7 @@ namespace UVP.ExternalIntegration.Business.Services
             return log?.RequestPayload;
         }
 
-        private async Task<DoaCandidateClearancesOneHR?> FindOneHRRecordAsync(string clearanceId)
+        private async Task<DoaCandidateClearancesOneHRModel?> FindOneHRRecordAsync(string clearanceId)
         {
             return (await _clearancesOneHRRepo.FindAsync(o =>
                     o.DoaCandidateClearanceId == clearanceId && !o.IsCompleted))
@@ -520,7 +520,7 @@ namespace UVP.ExternalIntegration.Business.Services
                 .FirstOrDefault();
         }
 
-        private async Task<DoaCandidateClearancesOneHR?> FindOneHRRecordByCandidateAsync(long candidateId, long doaCandidateId)
+        private async Task<DoaCandidateClearancesOneHRModel?> FindOneHRRecordByCandidateAsync(long candidateId, long doaCandidateId)
         {
             return (await _clearancesOneHRRepo.FindAsync(o =>
                     o.CandidateId == candidateId &&

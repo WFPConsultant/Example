@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
+      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251017-99": {
         "dependencies": {
           "Dapper": "2.1.66",
           "Koa.Platform.Injection": "1.0.0-servicing-20251010-99",
@@ -2384,7 +2384,7 @@
     }
   },
   "libraries": {
-    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
+    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251017-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

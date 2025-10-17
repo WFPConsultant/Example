@@ -9,11 +9,11 @@ namespace UVP.ExternalIntegration.Domain.Repository.Repositories
     using UVP.ExternalIntegration.Domain.Repository.Interfaces;
     using UVP.Shared.Micro.Entities.Sql;
 
-    public class IntegrationInvocationLogRepository : GenericRepository<IntegrationInvocationLog>, IIntegrationInvocationLogRepository
+    public class IntegrationInvocationLogRepository : GenericRepository<IntegrationInvocationLogModel>, IIntegrationInvocationLogRepository
     {
         public IntegrationInvocationLogRepository(DataSytemsIntegrationContext db) : base(db) { }
 
-        public async Task<IntegrationInvocationLog?> GetFirstRequestLogAsync(long invocationId, CancellationToken ct = default)
+        public async Task<IntegrationInvocationLogModel?> GetFirstRequestLogAsync(long invocationId, CancellationToken ct = default)
         {
             return await _dbSet
                 .Where(x => x.IntegrationInvocationId == invocationId && x.RequestPayload != null)

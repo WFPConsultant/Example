@@ -6,9 +6,9 @@ namespace UVP.ExternalIntegration.Domain.Repository.Interfaces
     using System.Threading.Tasks;
     using UVP.ExternalIntegration.Domain.Entity.Integration;
 
-    public interface IIntegrationInvocationRepository : IGenericRepository<IntegrationInvocation>
+    public interface IIntegrationInvocationRepository : IGenericRepository<IntegrationInvocationModel>
     {
-        Task<IEnumerable<IntegrationInvocation>> GetPendingInvocationsAsync();
-        Task<List<IntegrationInvocation>> GetRetryableInvocationsAsync(DateTime utcNow, int take = 200, CancellationToken ct = default);
+        Task<IEnumerable<IntegrationInvocationModel>> GetPendingInvocationsAsync();
+        Task<List<IntegrationInvocationModel>> GetRetryableInvocationsAsync(DateTime utcNow, int take = 200, CancellationToken ct = default);
     }
 }

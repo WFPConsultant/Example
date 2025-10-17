@@ -22,7 +22,7 @@ namespace UVP.ExternalIntegration.Business.Services
             new("\"(?<ext>[^\"]+)\"\\s*:\\s*\"(?<ph>(?:\\{\\{\\s*[A-Za-z0-9_.]+\\s*\\}\\}|\\$\\{\\s*[A-Za-z0-9_.]+\\s*\\}|\\{\\s*[A-Za-z0-9_.]+\\s*\\}))\"",
                 RegexOptions.Compiled);
 
-        public IDictionary<string, string> GetKeyMap(IntegrationEndpointConfiguration endpoint)
+        public IDictionary<string, string> GetKeyMap(IntegrationEndpointConfigurationModel endpoint)
         {
             var map = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             if (endpoint == null || string.IsNullOrWhiteSpace(endpoint.PayloadModelMapper))

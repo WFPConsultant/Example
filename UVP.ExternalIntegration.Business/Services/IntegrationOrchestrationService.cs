@@ -14,13 +14,13 @@ namespace UVP.ExternalIntegration.Business.Services
     public class IntegrationOrchestrationService : IIntegrationOrchestrationService
     {
         private readonly IInvocationManagerService _invocationManager;
-        private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesOneHRModel> _clearancesOneHRRepo;
         private readonly IGenericRepository<DoaCandidateClearanceModel> _clearancesRepo;
         private readonly ILogger _logger = Log.ForContext<IntegrationOrchestrationService>();
 
         public IntegrationOrchestrationService(
             IInvocationManagerService invocationManager,
-            IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
+            IGenericRepository<DoaCandidateClearancesOneHRModel> clearancesOneHRRepo,
             IGenericRepository<DoaCandidateClearanceModel> clearancesRepo)
         {
             _invocationManager = invocationManager;

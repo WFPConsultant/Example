@@ -6547,7 +6547,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Business\\UVP.ExternalIntegration.Business.csproj": {
-      "version": "1.0.0-servicing-20251016-99",
+      "version": "1.0.0-servicing-20251017-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Business\\UVP.ExternalIntegration.Business.csproj",
         "projectName": "UVP.ExternalIntegration.Business",
@@ -6684,7 +6684,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Domain\\UVP.ExternalIntegration.Domain.csproj": {
-      "version": "1.0.0-servicing-20251016-99",
+      "version": "1.0.0-servicing-20251017-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Domain\\UVP.ExternalIntegration.Domain.csproj",
         "projectName": "UVP.ExternalIntegration.Domain",

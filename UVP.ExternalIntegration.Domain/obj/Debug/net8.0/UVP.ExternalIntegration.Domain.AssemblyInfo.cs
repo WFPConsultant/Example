@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("© Everis. All rights reserved.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0-servicing-20251016-99+46112bb4ed3d033098d953d51a8d4a389bd52249")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0-servicing-20251017-99+b4c0b9e0a8f34738b71e829e85cb363624161177")]
 [assembly: System.Reflection.AssemblyProductAttribute("UVP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UVP.ExternalIntegration.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

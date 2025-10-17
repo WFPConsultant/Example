@@ -11,19 +11,19 @@ namespace UVP.ExternalIntegration.Domain.Repository.Repositories
     using UVP.ExternalIntegration.Domain.Enums;
     using UVP.ExternalIntegration.Domain.Repository.Interfaces;
 
-    public class IntegrationInvocationRepository : GenericRepository<IntegrationInvocation>, IIntegrationInvocationRepository
+    public class IntegrationInvocationRepository : GenericRepository<IntegrationInvocationModel>, IIntegrationInvocationRepository
     {
         public IntegrationInvocationRepository(DataSytemsIntegrationContext context) : base(context)
         {
         }
 
-        public async Task<IEnumerable<IntegrationInvocation>> GetPendingInvocationsAsync()
+        public async Task<IEnumerable<IntegrationInvocationModel>> GetPendingInvocationsAsync()
         {
             return await _dbSet
                 .Where(i => i.IntegrationStatus == IntegrationStatus.PENDING.ToString())
                 .ToListAsync();
         }
-        public async Task<List<IntegrationInvocation>> GetRetryableInvocationsAsync(DateTime utcNow, int take = 200, CancellationToken ct = default)
+        public async Task<List<IntegrationInvocationModel>> GetRetryableInvocationsAsync(DateTime utcNow, int take = 200, CancellationToken ct = default)
         {
             return await _dbSet
                 .Where(i =>

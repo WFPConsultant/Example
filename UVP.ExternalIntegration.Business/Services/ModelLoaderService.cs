@@ -7,8 +7,6 @@ namespace UVP.ExternalIntegration.Business.Services
     using System.Text;
     using System.Text.Json;
     using System.Threading.Tasks;
-    //using global::UVP.Doa.Business.Model;
-    //using global::UVP.Doa.Domain.Sql.Entities;
     using global::UVP.ExternalIntegration.Business.Interfaces;
     using global::UVP.ExternalIntegration.Domain.Entity.Integration;
     using global::UVP.ExternalIntegration.Domain.Entity.SystemsIntegration;
@@ -22,30 +20,30 @@ namespace UVP.ExternalIntegration.Business.Services
     {
         private readonly IIntegrationInvocationRepository _invocationRepo;
         private readonly IIntegrationEndpointRepository _endpointRepo;
-        private readonly IGenericRepository<IntegrationInvocationLog> _invocationLogRepo;
-        private readonly IGenericRepository<DoaCandidate> _doaCandidateRepo;
-        private readonly IGenericRepository<Domain.Entity.SystemsIntegration.Candidate> _candidateRepo;
-        private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
-        private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
-        private readonly IGenericRepository<Doa> _doaRepo;
-        private readonly IGenericRepository<User> _userRepo;
-        private readonly IGenericRepository<DutyStationValue> _dutyStationRepo;
-        private readonly IGenericRepository<Assignment> _assignmentRepo;
+        private readonly IGenericRepository<IntegrationInvocationLogModel> _invocationLogRepo;
+        private readonly IGenericRepository<DoaCandidateModel> _doaCandidateRepo;
+        private readonly IGenericRepository<Domain.Entity.SystemsIntegration.CandidateModel> _candidateRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesModel> _clearancesRepo;
+        private readonly IGenericRepository<DoaCandidateClearancesOneHRModel> _clearancesOneHRRepo;
+        private readonly IGenericRepository<DoaModel> _doaRepo;
+        private readonly IGenericRepository<UserModel> _userRepo;
+        private readonly IGenericRepository<DutyStationModel> _dutyStationRepo;
+        private readonly IGenericRepository<AssignmentModel> _assignmentRepo;
         private readonly IKeyMappingProvider _keyMappingProvider;
         private readonly ILogger _logger = Log.ForContext<ModelLoaderService>();
 
         public ModelLoaderService(
             IIntegrationInvocationRepository invocationRepo,
             IIntegrationEndpointRepository endpointRepo,
-            IGenericRepository<IntegrationInvocationLog> invocationLogRepo,
-            IGenericRepository<DoaCandidate> doaCandidateRepo,
-            IGenericRepository<Domain.Entity.SystemsIntegration.Candidate> candidateRepo,
-            IGenericRepository<DoaCandidateClearances> clearancesRepo,
-            IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
-            IGenericRepository<Doa> doaRepo,
-            IGenericRepository<User> userRepo,
-            IGenericRepository<DutyStationValue> dutyStationRepo,
-            IGenericRepository<Assignment> assignmentRepo,
+            IGenericRepository<IntegrationInvocationLogModel> invocationLogRepo,
+            IGenericRepository<DoaCandidateModel> doaCandidateRepo,
+            IGenericRepository<Domain.Entity.SystemsIntegration.CandidateModel> candidateRepo,
+            IGenericRepository<DoaCandidateClearancesModel> clearancesRepo,
+            IGenericRepository<DoaCandidateClearancesOneHRModel> clearancesOneHRRepo,
+            IGenericRepository<DoaModel> doaRepo,
+            IGenericRepository<UserModel> userRepo,
+            IGenericRepository<DutyStationModel> dutyStationRepo,
+            IGenericRepository<AssignmentModel> assignmentRepo,
             IKeyMappingProvider keyMappingProvider)
         {
             _invocationRepo = invocationRepo;
@@ -94,7 +92,7 @@ namespace UVP.ExternalIntegration.Business.Services
             return await BuildModelBundleAsync(uvpDataModel, doaCandidateId, candidateId);
         }
 
-        private async Task<IntegrationInvocationLog> GetFirstRequestLogAsync(long invocationId)
+        private async Task<IntegrationInvocationLogModel> GetFirstRequestLogAsync(long invocationId)
         {
             var allLogs = await _invocationLogRepo.FindAsync(l => l.IntegrationInvocationId == invocationId);
             var firstRequestLog = allLogs
@@ -109,7 +107,7 @@ namespace UVP.ExternalIntegration.Business.Services
         }
 
         private Dictionary<string, object> BuildKeyBagFromPayload(
-            IntegrationInvocation invocation,
+            IntegrationInvocationModel invocation,
             string requestPayload,
             IDictionary<string, string> keyMap)
         {

@@ -9,6 +9,6 @@ namespace UVP.ExternalIntegration.Business.Interfaces
         /// Map an external response body back into UVP domain state for the given invocation.
         /// Should not rely on DoaCandidateId/ReferenceId stored on the invocation row.
         /// </summary>
-        Task ProcessResponseAsync(IntegrationInvocation invocation, string responseBody, string integrationType);
+        Task ProcessResponseAsync(IntegrationInvocationModel invocation, string responseBody, string integrationType);
     }
 }

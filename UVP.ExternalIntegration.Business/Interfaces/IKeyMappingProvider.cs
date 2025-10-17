@@ -12,6 +12,6 @@ namespace UVP.ExternalIntegration.Business.Interfaces
         /// <summary>
         /// Returns a dictionary mapping external keys to internal keys for the given endpoint.
         /// </summary>
-        IDictionary<string, string> GetKeyMap(IntegrationEndpointConfiguration endpoint);
+        IDictionary<string, string> GetKeyMap(IntegrationEndpointConfigurationModel endpoint);
     }
 }

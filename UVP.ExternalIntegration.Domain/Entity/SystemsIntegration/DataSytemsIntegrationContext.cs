@@ -13,27 +13,27 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
                : base(options)
             => this.config = config;
 
-        public DbSet<IntegrationInvocation> IntegrationInvocations { get; set; }
+        public DbSet<IntegrationInvocationModel> IntegrationInvocations { get; set; }
 
-        public DbSet<IntegrationInvocationLog> IntegrationInvocationLogs { get; set; }
+        public DbSet<IntegrationInvocationLogModel> IntegrationInvocationLogs { get; set; }
 
-        public DbSet<IntegrationEndpointConfiguration> IntegrationEndpointConfigurations { get; set; }
+        public DbSet<IntegrationEndpointConfigurationModel> IntegrationEndpointConfigurations { get; set; }
 
-        public DbSet<DoaCandidateClearances> DoaCandidateClearances { get; set; }
+        public DbSet<DoaCandidateClearancesModel> DoaCandidateClearances { get; set; }
 
-        public DbSet<DoaCandidateClearancesOneHR> DoaCandidateClearancesOneHR { get; set; }
+        public DbSet<DoaCandidateClearancesOneHRModel> DoaCandidateClearancesOneHR { get; set; }
 
-        public DbSet<DoaCandidate> DoaCandidates { get; set; }
+        public DbSet<DoaCandidateModel> DoaCandidates { get; set; }
 
-        public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<CandidateModel> Candidates { get; set; }
 
-        public DbSet<Doa> Doas { get; set; }
+        public DbSet<DoaModel> Doas { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
 
-        public DbSet<DutyStationValue> DutyStationValues { get; set; }
+        public DbSet<DutyStationModel> DutyStationValues { get; set; }
 
-        public DbSet<Assignment> Assignments { get; set; }
+        public DbSet<AssignmentModel> Assignments { get; set; }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //    => optionsBuilder.UseSqlServer(this.config.GetConnectionString("DefaultConnection"));
@@ -57,16 +57,18 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
         {
             base.OnModelCreating(modelBuilder);
 
-
-            modelBuilder.Entity<DoaCandidate>().ToTable("DoaCandidate", "dbo");
-            modelBuilder.Entity<Doa>().ToTable("Doa", "dbo");
-            modelBuilder.Entity<Candidate>().ToTable("Candidate", "dbo");
-            modelBuilder.Entity<User>().ToTable("User", "dbo");
-            modelBuilder.Entity<DutyStationValue>().ToTable("DutyStationValue", "dbo");
-            modelBuilder.Entity<Assignment>().ToTable("Assignment", "dbo");
+           
+            modelBuilder.Entity<DoaCandidateModel>().ToTable("DoaCandidate", "dbo");
+            modelBuilder.Entity<DoaModel>().ToTable("Doa", "dbo");
+            modelBuilder.Entity<CandidateModel>().ToTable("Candidate", "dbo");
+            modelBuilder.Entity<UserModel>().ToTable("User", "dbo");
+            modelBuilder.Entity<DutyStationModel>().ToTable("DutyStationValue", "dbo");
+            modelBuilder.Entity<AssignmentModel>().ToTable("Assignment", "dbo");
+            modelBuilder.Entity<DoaCandidateClearancesModel>().ToTable("DoaCandidateClearances", "dbo");
+            modelBuilder.Entity<DoaCandidateClearancesOneHRModel>().ToTable("DoaCandidateClearancesOneHR", "dbo");
 
             // IntegrationEndpointConfiguration
-            modelBuilder.Entity<IntegrationEndpointConfiguration>(entity =>
+            modelBuilder.Entity<IntegrationEndpointConfigurationModel>(entity =>
             {
                 entity.HasKey(e => e.IntegrationEndpointId);
                 entity.Property(e => e.IntegrationEndpointId).HasColumnType("bigint");  // Explicitly set to bigint
@@ -81,7 +83,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // IntegrationInvocation
-            modelBuilder.Entity<IntegrationInvocation>(entity =>
+            modelBuilder.Entity<IntegrationInvocationModel>(entity =>
             {
                 entity.HasKey(e => e.IntegrationInvocationId);
                 entity.Property(e => e.IntegrationInvocationId).HasColumnType("bigint");  // Already bigint
@@ -94,7 +96,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // IntegrationInvocationLog
-            modelBuilder.Entity<IntegrationInvocationLog>(entity =>
+            modelBuilder.Entity<IntegrationInvocationLogModel>(entity =>
             {
                 entity.HasKey(e => e.IntegrationInvocationLogId);
                 entity.Property(e => e.IntegrationInvocationLogId).HasColumnType("bigint");  // Already bigint
@@ -110,7 +112,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // DoaCandidate
-            modelBuilder.Entity<DoaCandidate>(entity =>
+            modelBuilder.Entity<DoaCandidateModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -122,7 +124,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // Candidate
-            modelBuilder.Entity<Candidate>(entity =>
+            modelBuilder.Entity<CandidateModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -130,7 +132,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // DoaCandidateClearances
-            modelBuilder.Entity<DoaCandidateClearances>(entity =>
+            modelBuilder.Entity<DoaCandidateClearancesModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -148,7 +150,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // DoaCandidateClearancesOneHR
-            modelBuilder.Entity<DoaCandidateClearancesOneHR>(entity =>
+            modelBuilder.Entity<DoaCandidateClearancesOneHRModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -171,7 +173,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // Doa
-            modelBuilder.Entity<Doa>(entity =>
+            modelBuilder.Entity<DoaModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -179,7 +181,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // User
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -190,7 +192,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // DutyStationValue
-            modelBuilder.Entity<DutyStationValue>(entity =>
+            modelBuilder.Entity<DutyStationModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");
@@ -199,7 +201,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
             });
 
             // Assignment
-            modelBuilder.Entity<Assignment>(entity =>
+            modelBuilder.Entity<AssignmentModel>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).HasColumnType("bigint");

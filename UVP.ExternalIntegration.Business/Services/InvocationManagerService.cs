@@ -44,7 +44,7 @@ namespace UVP.ExternalIntegration.Business.Services
         {
             try
             {
-                var invocation = new IntegrationInvocation
+                var invocation = new IntegrationInvocationModel
                 {
                     // NO: DoaCandidateId / ReferenceId / ExternalReferenceId — removed by design
                     IntegrationType = request.IntegrationType,
