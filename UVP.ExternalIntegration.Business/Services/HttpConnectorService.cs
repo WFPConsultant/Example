@@ -51,23 +51,6 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 try
                 {
-                    //// (kept) Mock base override via env var
-                    ////var baseUrlOverride = Environment.GetEnvironmentVariable("CMTS_BASEURL");
-                    //var baseUrlOverride = Environment.GetEnvironmentVariable("EARTHMED_BASEURL");
-                    //if (!string.IsNullOrWhiteSpace(baseUrlOverride))
-                    //{
-                    //    if (Uri.TryCreate(request.Url, UriKind.Absolute, out var abs))
-                    //    {
-                    //        var mockBase = new Uri(baseUrlOverride, UriKind.Absolute);
-                    //        var final = new Uri(mockBase, abs.PathAndQuery + abs.Fragment);
-                    //        request.Url = final.ToString(); // e.g., http://localhost:9091/un/cmts/clearance/v1
-                    //    }
-                    //    else
-                    //    {
-                    //        request.Url = new Uri(new Uri(baseUrlOverride, UriKind.Absolute), request.Url).ToString();
-                    //    }
-                    //}
-                    //// END kept
                     _logger.Information("Sending {Method} request to {Url}", request.Method, request.Url);
 
                     if (!string.IsNullOrEmpty(request.Payload))

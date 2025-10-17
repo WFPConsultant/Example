@@ -3,8 +3,7 @@ namespace UVP.ExternalIntegration.Domain.Configuration
     using System.Collections.Generic;
 
     /// <summary>
-    /// Generic OAuth configuration for integration systems
-    /// Supports multiple integration types through dictionary-based configuration
+    /// Generic OAuth configuration for integration systems - dictionary-based configuration
     /// </summary>
     public class OAuthConfiguration
     {

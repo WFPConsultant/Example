@@ -1,12 +1,12 @@
 namespace UVP.ExternalIntegration.Domain.Entity.Integration
 {
     using System;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Database entity for storing integration endpoint configurations.
-    /// This is a NEW table specific to integration functionality.
     /// </summary>
-    
+    [Keyless]
     public class IntegrationEndpointConfiguration
     {
         public int IntegrationEndpointId { get; set; }

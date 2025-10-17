@@ -1,10 +1,13 @@
 namespace UVP.ExternalIntegration.Domain.Entity.Integration
 {
     using System;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Database entity for tracking integration invocations.
     /// </summary>
+    ///
+    [Keyless]
     public class IntegrationInvocation
     {
         public long IntegrationInvocationId { get; set; }

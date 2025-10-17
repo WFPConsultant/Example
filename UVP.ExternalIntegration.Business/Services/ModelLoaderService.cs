@@ -7,13 +7,15 @@ namespace UVP.ExternalIntegration.Business.Services
     using System.Text;
     using System.Text.Json;
     using System.Threading.Tasks;
-    using global::UVP.Doa.Domain.Sql.Entities;
+    //using global::UVP.Doa.Business.Model;
+    //using global::UVP.Doa.Domain.Sql.Entities;
     using global::UVP.ExternalIntegration.Business.Interfaces;
     using global::UVP.ExternalIntegration.Domain.Entity.Integration;
+    using global::UVP.ExternalIntegration.Domain.Entity.SystemsIntegration;
     using global::UVP.ExternalIntegration.Domain.Entity.Users;
     using global::UVP.ExternalIntegration.Domain.Enums;
     using global::UVP.ExternalIntegration.Domain.Integration.DTOs;
-    using global::UVP.ExternalIntegration.Domain.Repository.Interfaces;
+    using global::UVP.ExternalIntegration.Domain.Repository.Interfaces;    
     using Serilog;
 
     public class ModelLoaderService : IModelLoaderService
@@ -22,11 +24,13 @@ namespace UVP.ExternalIntegration.Business.Services
         private readonly IIntegrationEndpointRepository _endpointRepo;
         private readonly IGenericRepository<IntegrationInvocationLog> _invocationLogRepo;
         private readonly IGenericRepository<DoaCandidate> _doaCandidateRepo;
-        private readonly IGenericRepository<Candidate> _candidateRepo;
+        private readonly IGenericRepository<Domain.Entity.SystemsIntegration.Candidate> _candidateRepo;
         private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
         private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
         private readonly IGenericRepository<Doa> _doaRepo;
         private readonly IGenericRepository<User> _userRepo;
+        private readonly IGenericRepository<DutyStationValue> _dutyStationRepo;
+        private readonly IGenericRepository<Assignment> _assignmentRepo;
         private readonly IKeyMappingProvider _keyMappingProvider;
         private readonly ILogger _logger = Log.ForContext<ModelLoaderService>();
 
@@ -35,11 +39,13 @@ namespace UVP.ExternalIntegration.Business.Services
             IIntegrationEndpointRepository endpointRepo,
             IGenericRepository<IntegrationInvocationLog> invocationLogRepo,
             IGenericRepository<DoaCandidate> doaCandidateRepo,
-            IGenericRepository<Candidate> candidateRepo,
+            IGenericRepository<Domain.Entity.SystemsIntegration.Candidate> candidateRepo,
             IGenericRepository<DoaCandidateClearances> clearancesRepo,
             IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
             IGenericRepository<Doa> doaRepo,
             IGenericRepository<User> userRepo,
+            IGenericRepository<DutyStationValue> dutyStationRepo,
+            IGenericRepository<Assignment> assignmentRepo,
             IKeyMappingProvider keyMappingProvider)
         {
             _invocationRepo = invocationRepo;
@@ -51,6 +57,8 @@ namespace UVP.ExternalIntegration.Business.Services
             _clearancesOneHRRepo = clearancesOneHRRepo;
             _doaRepo = doaRepo;
             _userRepo = userRepo;
+            _dutyStationRepo = dutyStationRepo;
+            _assignmentRepo = assignmentRepo;
             _keyMappingProvider = keyMappingProvider;
         }
 
@@ -303,13 +311,18 @@ namespace UVP.ExternalIntegration.Business.Services
                     d.DoaCandidateId == doaCandidateId && d.CandidateId == candidateId))
                     .FirstOrDefault(),
 
-                "DoaCandidateClearances" => (await _clearancesRepo.FindAsync(d =>
-                    d.DoaCandidateId == doaCandidateId))
-                    .FirstOrDefault(),
+                //"DoaCandidateClearances" => (await _clearancesRepo.FindAsync(d =>
+                //    d.DoaCandidateId == doaCandidateId))
+                //    .FirstOrDefault(),
+
+                "DoaCandidateClearances" => await _clearancesRepo
+                    .GetSingleOrDefaultAsync(d => d.DoaCandidateId == doaCandidateId),
 
                 "Doa" => await LoadDoaModelAsync(doaCandidateId),
 
                 "User" => await LoadUserModelAsync(candidateId),
+
+                "DutyStationValue" => await LoadDutyStationModelAsync(doaCandidateId),
 
                 _ => null
             };
@@ -321,6 +334,10 @@ namespace UVP.ExternalIntegration.Business.Services
             if (doaCandidateEntity == null)
                 return null;
 
+            // Ensure TentativeTravelDate is set because its mandatory field
+            if (doaCandidateEntity.TentativeTravelDate == null)
+                doaCandidateEntity.TentativeTravelDate = DateTime.Now.AddMonths(1);
+
             var doaEntity = await _doaRepo.GetByIdAsync(doaCandidateEntity.DoaId);
             if (doaEntity == null)
                 return null;
@@ -329,11 +346,11 @@ namespace UVP.ExternalIntegration.Business.Services
             {
                 doaEntity.Id,
                 doaEntity.Name,
-                doaEntity.OrganizationMission,
-                doaEntity.DutyStationCode,
-                doaEntity.DutyStationDescription,
-                doaEntity.StartDate,
-                doaEntity.ExpectedEndDate
+                //doaEntity.OrganizationMission,
+                //doaEntity.DutyStationCode,
+                //doaEntity.DutyStationDescription,
+                //doaEntity.StartDate,
+                //doaEntity.ExpectedEndDate
             };
         }
 
@@ -351,12 +368,36 @@ namespace UVP.ExternalIntegration.Business.Services
             {
                 userEntity.Id,
                 userEntity.FirstName,
-                MiddleName = userEntity.MiddleName ?? string.Empty,
                 userEntity.LastName,
-                Gender = userEntity.Gender ?? string.Empty,
-                BirthDate = userEntity.DateOfBirth,
-                EmailAddress = userEntity.PersonalEmail ?? string.Empty,
-                NationalityCode = userEntity.NationalityISOCode ?? string.Empty
+                Gender = userEntity.GenderCode == "GenderFemale"
+                ? "F"
+                : userEntity.GenderCode == "GenderMale"
+                    ? "M"
+                    : "O",
+                BirthDate = userEntity.BirthDate,
+                EmailAddress = userEntity.PersonalEmail ?? string.Empty
+            };
+        }
+
+        private async Task<object?> LoadDutyStationModelAsync(long doaCandidateId)
+        {
+            var doaCandidateEntity = await _doaCandidateRepo.GetByIdAsync(doaCandidateId);
+            if (doaCandidateEntity == null)
+                return null;
+
+            var assignmentEntity = await _assignmentRepo.GetByIdAsync(doaCandidateEntity.AssignmentId);
+            if (assignmentEntity == null)
+                return null;
+
+            var dutyStationEntity = await _dutyStationRepo.GetSingleOrDefaultAsync(x => x.Code == assignmentEntity.DutyStationCode);//DutyStationCode
+            //var dutyStationEntity = await _dutyStationRepo.GetSingleOrDefaultAsync(x => x.Id == assignmentEntity.DutyStation.Id);
+            if (dutyStationEntity == null)
+                return null;
+
+            return new
+            {
+                dutyStationEntity.Code,
+                dutyStationEntity.ShortDescription
             };
         }
 
@@ -382,12 +423,6 @@ namespace UVP.ExternalIntegration.Business.Services
 
         private static long TryGetIntFromBag(IDictionary<string, object> bag, string key)
         {
-            //if (TryGetFromBag(bag, key, out var v))
-            //{
-            //    if (v is int i) return i;
-            //    if (int.TryParse(v?.ToString(), out var n)) return n;
-            //}
-            //return 0;
             if (TryGetFromBag(bag, key, out var v))
             {
                 if (v is int i)

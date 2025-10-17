@@ -1,11 +1,13 @@
 namespace UVP.ExternalIntegration.Domain.Entity.Integration
 {
     using System;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Database entity for logging integration invocation details.
     /// </summary>
-    
+
+    [Keyless]
     public class IntegrationInvocationLog
     {
         public long IntegrationInvocationLogId { get; set; }
@@ -20,9 +22,7 @@ namespace UVP.ExternalIntegration.Domain.Entity.Integration
         public string? ErrorDetails { get; set; }
         public int LogSequence { get; set; }
         public DateTime CreatedOn { get; set; }
-        public string CreatedUser { get; set; } = string.Empty;
-
-        // Navigation properties
+        public string CreatedUser { get; set; } = string.Empty;        
         public virtual IntegrationInvocation? IntegrationInvocation { get; set; }
     }
 }

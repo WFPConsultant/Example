@@ -5,7 +5,7 @@
   },
   "projects": {
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Core\\BPM\\UVP.Core.BPM.Domain\\UVP.Core.BPM.Domain.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Core\\BPM\\UVP.Core.BPM.Domain\\UVP.Core.BPM.Domain.csproj",
         "projectName": "UVP.Core.BPM.Domain",
@@ -3348,7 +3348,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Event\\UVP.Shared.Event\\UVP.Shared.Event.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Event\\UVP.Shared.Event\\UVP.Shared.Event.csproj",
         "projectName": "UVP.Shared.Event",
@@ -3763,7 +3763,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Http\\UVP.Shared.Http.MasterTables\\UVP.Shared.Http.MasterTable.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Http\\UVP.Shared.Http.MasterTables\\UVP.Shared.Http.MasterTable.csproj",
         "projectName": "UVP.Shared.Http.MasterTable",
@@ -3948,7 +3948,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Http\\UVP.Shared.Http.User\\UVP.Shared.Http.User.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Http\\UVP.Shared.Http.User\\UVP.Shared.Http.User.csproj",
         "projectName": "UVP.Shared.Http.User",
@@ -4487,7 +4487,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Domain.Entities\\UVP.Shared.Micro.Domain.Entities.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Domain.Entities\\UVP.Shared.Micro.Domain.Entities.csproj",
         "projectName": "UVP.Shared.Micro.Domain.Entities",
@@ -4604,7 +4604,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Domain.Services.Contracts\\UVP.Shared.Micro.Domain.Services.Contracts.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Domain.Services.Contracts\\UVP.Shared.Micro.Domain.Services.Contracts.csproj",
         "projectName": "UVP.Shared.Micro.Domain.Services.Contracts",
@@ -4853,7 +4853,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Entities\\UVP.Shared.Micro.Entities.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Entities\\UVP.Shared.Micro.Entities.csproj",
         "projectName": "UVP.Shared.Micro.Entities",
@@ -4971,7 +4971,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Repositories.Contracts\\UVP.Shared.Micro.Repositories.Contracts.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Micro\\UVP.Shared.Micro.Repositories.Contracts\\UVP.Shared.Micro.Repositories.Contracts.csproj",
         "projectName": "UVP.Shared.Micro.Repositories.Contracts",
@@ -5539,7 +5539,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Model\\UVP.Shared.Model.Doa\\UVP.Shared.Model.Doa.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\Shared\\Model\\UVP.Shared.Model.Doa\\UVP.Shared.Model.Doa.csproj",
         "projectName": "UVP.Shared.Model.Doa",
@@ -6274,7 +6274,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Doa\\UVP.Doa.Domain\\UVP.Doa.Domain.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Doa\\UVP.Doa.Domain\\UVP.Doa.Domain.csproj",
         "projectName": "UVP.Doa.Domain",
@@ -6415,7 +6415,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Doa\\UVP.User.Domain\\UVP.User.Domain.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Doa\\UVP.User.Domain\\UVP.User.Domain.csproj",
         "projectName": "UVP.User.Domain",
@@ -6547,7 +6547,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Business\\UVP.ExternalIntegration.Business.csproj": {
-      "version": "1.0.0-servicing-20251014-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Business\\UVP.ExternalIntegration.Business.csproj",
         "projectName": "UVP.ExternalIntegration.Business",
@@ -6684,7 +6684,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Domain\\UVP.ExternalIntegration.Domain.csproj": {
-      "version": "1.0.0-servicing-20251014-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Domain\\UVP.ExternalIntegration.Domain.csproj",
         "projectName": "UVP.ExternalIntegration.Domain",
@@ -6891,7 +6891,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Integration\\UVP.Integration.Domain\\UVP.Integration.Domain.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\Integration\\UVP.Integration.Domain\\UVP.Integration.Domain.csproj",
         "projectName": "UVP.Integration.Domain",
@@ -7002,7 +7002,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\MasterTables\\UVP.MasterTables.Business\\UVP.MasterTables.Business.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\MasterTables\\UVP.MasterTables.Business\\UVP.MasterTables.Business.csproj",
         "projectName": "UVP.MasterTables.Business",
@@ -7108,7 +7108,7 @@
       }
     },
     "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\MasterTables\\UVP.MasterTables.Domain\\UVP.MasterTables.Domain.csproj": {
-      "version": "1.0.0-servicing-20251010-99",
+      "version": "1.0.0-servicing-20251016-99",
       "restore": {
         "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\MasterTables\\UVP.MasterTables.Domain\\UVP.MasterTables.Domain.csproj",
         "projectName": "UVP.MasterTables.Domain",

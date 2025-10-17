@@ -2,23 +2,13 @@ namespace UVP.ExternalIntegration.Business.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using System.Text.Json;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
     using global::UVP.ExternalIntegration.Business.Interfaces;
     using global::UVP.ExternalIntegration.Domain.Entity.Integration;
 
     /// <summary>
-    /// Provides a mapping from external payload keys (vendor) to internal keys.
-    /// Resolution order:
-    ///   1) If endpoint.PayloadModelMapper has a JSON { "keyMap": { ext: int, ... } } -> use it.
-    ///   2) If PayloadModelMapper is a JSON template, invert fields where value is a single placeholder,
-    ///      e.g.  "externalRequestId": "{{ CandidateId }}", which yields ext->int = externalRequestId->CandidateId.
-    ///   3) If it is a raw (non-JSON) template, regex-scan for the same pattern and invert.
-    ///
-    /// If all fail, returns an empty mapping (no hardcoded defaults).
+    /// Provides a mapping from external payload keys (vendor) to internal keys.    
     /// </summary>
     public class KeyMappingProvider : IKeyMappingProvider
     {
@@ -40,15 +30,15 @@ namespace UVP.ExternalIntegration.Business.Services
 
             var text = endpoint.PayloadModelMapper.Trim();
 
-            // 1) Try explicit JSON with "keyMap"
+            // Try explicit JSON with "keyMap"
             if (TryReadExplicitKeyMap(text, out var explicitMap))
                 return explicitMap;
 
-            // 2) Try to parse as JSON template and invert simple placeholders
+            // Try to parse as JSON template and invert simple placeholders
             if (TryInvertJsonTemplate(text, out var invertedFromJson))
                 return invertedFromJson;
 
-            // 3) Fallback: raw-text template scan (still invert)
+            // Fallback: raw-text template scan (still invert)
             if (TryInvertRawTemplate(text, out var invertedFromRaw))
                 return invertedFromRaw;
 
@@ -76,7 +66,7 @@ namespace UVP.ExternalIntegration.Business.Services
             }
             catch
             {
-                // Not a JSON with keyMap — ignore
+                // Not a JSON with keyMap
             }
             return false;
         }

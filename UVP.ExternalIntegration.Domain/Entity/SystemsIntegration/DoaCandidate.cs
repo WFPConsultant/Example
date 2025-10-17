@@ -9,11 +9,8 @@ namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
         public long Id { get; set; }
         public long DoaId { get; set; }
         public long CandidateId { get; set; }
-        public string? Department { get; set; }
-        public string? RequestorName { get; set; }
-        public string? RequestorEmail { get; set; }
-        public string? Status { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+        public long AssignmentId { get; set; }
+        public DateTime? TentativeTravelDate { get; set; }
+        public DateTime? ContractCalculatedEndDate { get; set; }
     }
 }

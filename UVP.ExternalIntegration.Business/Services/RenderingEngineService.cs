@@ -10,6 +10,7 @@ namespace UVP.ExternalIntegration.Business.Services
     using Newtonsoft.Json.Linq;
     using Scriban;
     using Scriban.Runtime;
+    using Serilog;
 
     public class RenderingEngineService : IRenderingEngineService
     {
@@ -20,7 +21,6 @@ namespace UVP.ExternalIntegration.Business.Services
             try
             {
                 _logger.Debug("Rendering payload template");
-
                 if (templateJson is null)
                     throw new ArgumentNullException(nameof(templateJson));
                 if (model is null)
@@ -29,53 +29,41 @@ namespace UVP.ExternalIntegration.Business.Services
                 // Build Scriban context
                 var ctx = new TemplateContext
                 {
-                    // Keep C# property casing (Candidate.FirstName not candidate.firstname)
                     MemberRenamer = member => member.Name,
-                    // Be tolerant if something is missing/null (renders empty string)
                     StrictVariables = false
                 };
 
                 var globals = new ScriptObject();
 
-                // If model is ExpandoObject from ModelLoaderService, it's IDictionary<string, object>
                 if (model is IDictionary<string, object> expando)
                 {
-                    // Check if this is EARTHMED by looking for the Doa model
                     bool isEarthMed = expando.ContainsKey("Doa") && expando.ContainsKey("User");
-
                     if (isEarthMed)
                     {
-                        _logger.Information("Detected EARTHMED integration - applying field mappings");
-
-                        // Create enriched model with EARTHMED-specific computed fields
+                        _logger.Information("Detected EARTHMED integration - applying field mappings");                        
                         var enrichedModel = ApplyEarthMedTransformations(expando);
-
                         foreach (var kvp in enrichedModel)
                         {
-                            globals[kvp.Key] = kvp.Value;
+                            globals[kvp.Key] = ConvertDateTimesToStrings(kvp.Value);
                             _logger.Debug("Added {Key} to template globals", kvp.Key);
                         }
                     }
                     else
                     {
-                        // Standard processing for non-EARTHMED integrations
                         foreach (var kvp in expando)
                         {
-                            globals[kvp.Key] = kvp.Value;
+                            globals[kvp.Key] = ConvertDateTimesToStrings(kvp.Value);
                             _logger.Debug("Added {Key} to template globals", kvp.Key);
                         }
                     }
                 }
                 else
                 {
-                    // Regular POCO: expose its members as a single root object
-                    // (access in template as {{ Model.Property }})
                     globals["Model"] = model;
                 }
 
                 ctx.PushGlobal(globals);
 
-                // Parse + render the WHOLE JSON as a single template
                 var template = Template.Parse(templateJson);
                 if (template.HasErrors)
                 {
@@ -85,10 +73,9 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 var rendered = template.Render(ctx);
 
-                // Validate we produced valid JSON
                 try
                 {
-                    JToken.Parse(rendered); // throws if invalid
+                    JToken.Parse(rendered);
                 }
                 catch (Exception jsonEx)
                 {
@@ -104,6 +91,97 @@ namespace UVP.ExternalIntegration.Business.Services
                 _logger.Error(ex, "Error rendering payload");
                 throw;
             }
+        }
+               
+        /// <summary>
+        /// Convert DateTime objects to strings recursively to prevent Scriban from reformatting dates
+        /// </summary>
+        private object ConvertDateTimesToStrings(object value)
+        {
+            if (value == null)
+                return null;
+
+            // Convert DateTime to string
+            if (value is DateTime dateTime)
+            {
+                return dateTime.ToString("yyyy-MM-dd");
+            }
+
+            // Convert nullable DateTime to string
+            if (value.GetType() == typeof(DateTime?))
+            {
+                var nullableDateTime = (DateTime?)value;
+                if (nullableDateTime.HasValue)
+                {
+                    return nullableDateTime.Value.ToString("yyyy-MM-dd");
+                }
+                return null;
+            }
+
+            // If it's a ScriptObject, recursively convert all DateTime values
+            if (value is ScriptObject scriptObj)
+            {
+                var converted = new ScriptObject();
+                foreach (var kvp in scriptObj)
+                {
+                    converted[kvp.Key] = ConvertDateTimesToStrings(kvp.Value);
+                }
+                return converted;
+            }
+
+            // If it's a dictionary (like ExpandoObject), recursively convert
+            if (value is IDictionary<string, object> dict)
+            {
+                var converted = new ScriptObject();
+                foreach (var kvp in dict)
+                {
+                    converted[kvp.Key] = ConvertDateTimesToStrings(kvp.Value);
+                }
+                return converted;
+            }
+
+            // If it's a list/array, convert each element
+            if (value is System.Collections.IEnumerable enumerable && !(value is string))
+            {
+                var list = new List<object>();
+                foreach (var item in enumerable)
+                {
+                    list.Add(ConvertDateTimesToStrings(item));
+                }
+                return list;
+            }
+
+            // Return other types as-is
+            return value;
+        }
+
+
+        private object ConvertToScribanCompatible(object value)
+        {
+            if (value == null)
+                return null;
+
+            if (value is IDictionary<string, object> expando)
+            {
+                var scriptObj = new ScriptObject();
+                foreach (var kvp in expando)
+                {
+                    scriptObj[kvp.Key] = ConvertToScribanCompatible(kvp.Value);
+                }
+                return scriptObj;
+            }
+
+            if (value is System.Collections.IEnumerable enumerable && !(value is string))
+            {
+                var list = new List<object>();
+                foreach (var item in enumerable)
+                {
+                    list.Add(ConvertToScribanCompatible(item));
+                }
+                return list;
+            }
+
+            return value;
         }
 
         /// <summary>
@@ -121,6 +199,8 @@ namespace UVP.ExternalIntegration.Business.Services
                 var userModel = GetModelProperty<dynamic>(model, "User");
                 var candidateModel = GetModelProperty<dynamic>(model, "Candidate");
                 var doaCandidateModel = GetModelProperty<dynamic>(model, "DoaCandidate");
+                var dutyStationModel = GetModelProperty<dynamic>(model, "DutyStationValue");
+                var doaCandidateClearancesModel = GetModelProperty<dynamic>(model, "DoaCandidateClearances");
 
                 // Extract IDs for computed fields
                 long doaId = GetPropertyValue<long>(doaModel, "Id");
@@ -145,14 +225,14 @@ namespace UVP.ExternalIntegration.Business.Services
                 string clearanceType = "PE";
 
                 // Extract dates
-                DateTime? startDate = GetPropertyValue<DateTime?>(doaModel, "StartDate");
-                DateTime? endDate = GetPropertyValue<DateTime?>(doaModel, "ExpectedEndDate");
-                DateTime? requestDate = DateTime.UtcNow; // Current date as RequestDate
+                DateTime? startDate = GetPropertyValue<DateTime?>(doaCandidateModel, "TentativeTravelDate") ?? DateTime.UtcNow;
+                DateTime? endDate = GetPropertyValue<DateTime?>(doaCandidateModel, "ContractCalculatedEndDate") ?? DateTime.UtcNow;
+                DateTime? requestDate = GetPropertyValue<DateTime?>(doaCandidateClearancesModel, "RequestedDate") ?? DateTime.UtcNow; // Current date as RequestDate
                 DateTime? birthDate = GetPropertyValue<DateTime?>(userModel, "BirthDate");
 
                 // Extract duty station info
-                string dutyStationCode = GetPropertyValue<string>(doaModel, "DutyStationCode") ?? string.Empty;
-                string dutyStationDescription = GetPropertyValue<string>(doaModel, "DutyStationDescription") ?? string.Empty;
+                string dutyStationCode = GetPropertyValue<string>(dutyStationModel, "Code") ?? string.Empty;
+                string dutyStationDescription = GetPropertyValue<string>(dutyStationModel, "ShortDescription") ?? string.Empty;
 
                 // Extract candidate/user info
                 string firstName = GetPropertyValue<string>(userModel, "FirstName") ?? string.Empty;
@@ -184,7 +264,7 @@ namespace UVP.ExternalIntegration.Business.Services
                 string occupationGroup = GetPropertyValue<string>(candidateModel, "OccupationGroup") ?? string.Empty;
                 string functionalTitleCode = GetPropertyValue<string>(candidateModel, "FunctionalTitleCode") ?? string.Empty;
                 string functionalTitleDescription = GetPropertyValue<string>(candidateModel, "FunctionalTitleDescription")
-                    ?? GetPropertyValue<string>(doaModel, "Name") ?? string.Empty;
+                    ?? GetPropertyValue<string>(doaModel, "Name") ?? string.Empty;               
 
                 // Extract DOA info
                 string doaName = GetPropertyValue<string>(doaModel, "Name") ?? string.Empty;
@@ -201,14 +281,14 @@ namespace UVP.ExternalIntegration.Business.Services
                 requestDict["ReferenceNumber"] = referenceNumber;
                 requestDict["SequenceNumber"] = sequenceNumber;
                 requestDict["ClearanceType"] = clearanceType;
-                requestDict["RequestDate"] = FormatDate(requestDate);
+                requestDict["RequestDate"] = requestDate;
                 requestDict["RequestStatus"] = string.Empty;
 
                 requestDict["IndexNumber"] = indexNumber;
                 requestDict["FirstName"] = firstName;
                 requestDict["MiddleName"] = middleName;
                 requestDict["LastName"] = lastName;
-                requestDict["DateOfBirth"] = FormatDate(birthDate);
+                requestDict["DateOfBirth"] = birthDate;
                 requestDict["Gender"] = gender;
 
                 requestDict["EmailAddress"] = emailAddress;
@@ -248,9 +328,11 @@ namespace UVP.ExternalIntegration.Business.Services
                 // Create property aliases with different casing for template compatibility
                 // The template uses lowercase property names like birthDate, firstName, etc.
                 CreateCandidateAliases(enriched, candidateModel, firstName, lastName, middleName, birthDate);
-                CreateDoaAliases(enriched, doaModel, doaName, startDate, endDate, requestDate);
+                CreateDoaAliases(enriched, doaModel, doaName);
                 CreateUserAliases(enriched, userModel, emailAddress); // Pass emailAddress from User
-                CreateDoaCandidateAliases(enriched, doaCandidateModel, emailAddress); // Add DoaCandidate aliases
+                CreateDoaCandidateAliases(enriched, doaCandidateModel, emailAddress, startDate, endDate); // Add DoaCandidate aliases
+                CreateDoaCandidateClearanceAliases(enriched, doaCandidateClearancesModel, requestDate);
+
 
                 // Log mandatory field validation
                 ValidateMandatoryFields(requestDict);
@@ -301,7 +383,7 @@ namespace UVP.ExternalIntegration.Business.Services
             candidateDict["firstName"] = firstName;
             candidateDict["lastName"] = lastName;
             candidateDict["middleName"] = middleName;
-            candidateDict["birthDate"] = FormatDate(birthDate);
+            candidateDict["birthDate"] = birthDate;
 
             enriched["Candidate"] = candidateAlias;
         }
@@ -310,7 +392,7 @@ namespace UVP.ExternalIntegration.Business.Services
         /// Create Doa model aliases with lowercase property names for template compatibility
         /// </summary>
         private void CreateDoaAliases(Dictionary<string, object> enriched, dynamic doaModel,
-            string name, DateTime? startDate, DateTime? endDate, DateTime? requestDate)
+            string name)
         {
             if (doaModel == null)
                 return;
@@ -337,9 +419,6 @@ namespace UVP.ExternalIntegration.Business.Services
 
             // Add specific aliases that template expects
             doaDict["name"] = name;
-            doaDict["startDate"] = FormatDate(startDate);
-            doaDict["expectedEndDate"] = FormatDate(endDate);
-            doaDict["publishDate"] = FormatDate(requestDate); // Using requestDate as publishDate
 
             enriched["Doa"] = doaAlias;
         }
@@ -380,7 +459,7 @@ namespace UVP.ExternalIntegration.Business.Services
         /// <summary>
         /// Create DoaCandidate model aliases to expose RequestorEmail
         /// </summary>
-        private void CreateDoaCandidateAliases(Dictionary<string, object> enriched, dynamic doaCandidateModel, string emailAddress)
+        private void CreateDoaCandidateAliases(Dictionary<string, object> enriched, dynamic doaCandidateModel, string emailAddress, DateTime? startDate, DateTime? endDate)
         {
             if (doaCandidateModel == null)
                 return;
@@ -405,10 +484,38 @@ namespace UVP.ExternalIntegration.Business.Services
 
             // Ensure RequestorEmail is available
             doaCandidateDict["RequestorEmail"] = emailAddress;
-
+            doaCandidateDict["TentativeTravelDate"] = startDate;
+            doaCandidateDict["ContractCalculatedEndDate"] = endDate;
             enriched["DoaCandidate"] = doaCandidateAlias;
         }
 
+        private void CreateDoaCandidateClearanceAliases(Dictionary<string, object> enriched, dynamic doaCandidateClearanceModel, DateTime? requestDate)
+        {
+            if (doaCandidateClearanceModel == null)
+                return;
+
+            dynamic doaCandidateClearanceAlias = new ExpandoObject();
+            var doaCandidateClearanceDict = (IDictionary<string, object>)doaCandidateClearanceAlias;
+
+            // Copy all original properties from doaCandidateModel
+            var type = doaCandidateClearanceModel.GetType();
+            foreach (var prop in type.GetProperties())
+            {
+                try
+                {
+                    var value = prop.GetValue(doaCandidateClearanceModel);
+                    if (value != null)
+                    {
+                        doaCandidateClearanceDict[prop.Name] = value;
+                    }
+                }
+                catch { }
+            }
+
+            // Ensure RequestorEmail is available
+            doaCandidateClearanceDict["RequestDate"] = requestDate;
+            enriched["DoaCandidateClearances"] = doaCandidateClearanceAlias;
+        }
         /// <summary>
         /// Get a model property from the dictionary
         /// </summary>

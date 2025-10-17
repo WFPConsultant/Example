@@ -1,9 +1,7 @@
 namespace UVP.ExternalIntegration.Business.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Text.Json;
     using System.Threading.Tasks;
     using global::UVP.Doa.Domain.Sql.Entities;
@@ -12,15 +10,14 @@ namespace UVP.ExternalIntegration.Business.Services
     using global::UVP.ExternalIntegration.Domain.Enums;
     using global::UVP.ExternalIntegration.Domain.Integration.DTOs;
     using global::UVP.ExternalIntegration.Domain.Repository.Interfaces;
+    using Serilog;
 
     /// <summary>
-    /// Background polling job (no schema change version).
-    /// Rule: keep polling while DoaCandidateClearances.StatusCode != 'DELIVERED'
-    /// and IntegrationInvocation.AttemptCount < IntegrationEndpointConfiguration.RetriggerCount.
+    /// Background polling job
     /// </summary>
     public class StatusPollingService : IStatusPollingService
     {
-        private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
+        private readonly IGenericRepository<DoaCandidateClearance> _clearancesRepo;
         private readonly IGenericRepository<DoaCandidateClearancesOneHR> _oneHrRepo;
         private readonly IGenericRepository<IntegrationInvocationLog> _logRepo;
         private readonly IIntegrationInvocationRepository _invocationRepo;
@@ -30,7 +27,7 @@ namespace UVP.ExternalIntegration.Business.Services
         private readonly ILogger _logger = Log.ForContext<StatusPollingService>();
 
         public StatusPollingService(
-            IGenericRepository<DoaCandidateClearances> clearancesRepo,
+            IGenericRepository<DoaCandidateClearance> clearancesRepo,
             IGenericRepository<DoaCandidateClearancesOneHR> oneHrRepo,
             IGenericRepository<IntegrationInvocationLog> logRepo,
             IIntegrationInvocationRepository invocationRepo,
@@ -71,7 +68,7 @@ namespace UVP.ExternalIntegration.Business.Services
                     }
 
                     var candidateId = oneHr.CandidateId;
-                    var integrationType = clearance.RecruitmentClearanceCode;
+                    var integrationType = clearance.RecruitmentClearanceCode ?? string.Empty;//clearance.RecruitmentClearanceCode;
                     var operation = IntegrationOperation.GET_CLEARANCE_STATUS.ToString();
 
                     // 3) Endpoint & retrigger policy
@@ -179,7 +176,8 @@ namespace UVP.ExternalIntegration.Business.Services
                     }
 
                     var candidateId = oneHr.CandidateId;
-                    var integrationType = clearance.RecruitmentClearanceCode;
+                    //var integrationType = clearance.RecruitmentClearanceCode;
+                    var integrationType = clearance.RecruitmentClearanceCode ?? string.Empty;
                     var operation = IntegrationOperation.ACKNOWLEDGE_RESPONSE.ToString();
 
                     // Endpoint policy for ACK
@@ -271,7 +269,7 @@ namespace UVP.ExternalIntegration.Business.Services
             try
             {
                 // EARTHMED: Match by ReferenceNumber (DoaId_DoaCandidateId format)
-                if (integrationType.Equals("EARTHMED", StringComparison.OrdinalIgnoreCase))
+                if (integrationType.Equals(IntegrationType.EARTHMED.ToString(), StringComparison.OrdinalIgnoreCase))
                 {
                     return await IsEarthMedPayloadMatchAsync(requestPayload, doaCandidateId, candidateId);
                 }
@@ -307,7 +305,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 if (string.IsNullOrWhiteSpace(referenceNumber) || !referenceNumber.Contains("_"))
                 {
-                    _logger.Debug("[EARTHMED] ReferenceNumber not found or invalid format in payload");
+                    _logger.Debug("[{Type}] ReferenceNumber not found or invalid format in payload");
                     return false;
                 }
 
@@ -315,14 +313,14 @@ namespace UVP.ExternalIntegration.Business.Services
                 var parts = referenceNumber.Split('_');
                 if (parts.Length != 2)
                 {
-                    _logger.Debug("[EARTHMED] ReferenceNumber does not have 2 parts: {ReferenceNumber}", referenceNumber);
+                    _logger.Debug("[{Type}] ReferenceNumber does not have 2 parts: {ReferenceNumber}", referenceNumber);
                     return false;
                 }
 
                 if (!int.TryParse(parts[0], out var payloadDoaId) ||
                     !int.TryParse(parts[1], out var payloadDoaCandidateId))
                 {
-                    _logger.Debug("[EARTHMED] Failed to parse DoaId/DoaCandidateId from ReferenceNumber: {ReferenceNumber}", referenceNumber);
+                    _logger.Debug("[{Type}] Failed to parse DoaId/DoaCandidateId from ReferenceNumber: {ReferenceNumber}", referenceNumber);
                     return false;
                 }
 
@@ -340,7 +338,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 if (doaCandidate == null)
                 {
-                    _logger.Debug("[EARTHMED] DoaCandidate not found for DoaId={DoaId}, DoaCandidateId={DoaCandidateId}",
+                    _logger.Debug("[{Type}] DoaCandidate not found for DoaId={DoaId}, DoaCandidateId={DoaCandidateId}",
                         payloadDoaId, payloadDoaCandidateId);
                     return false;
                 }
@@ -348,14 +346,14 @@ namespace UVP.ExternalIntegration.Business.Services
                 // Match CandidateId
                 bool isMatch = doaCandidate.CandidateId == candidateId;
 
-                _logger.Debug("[EARTHMED] Payload match result: {IsMatch} (DoaCandidateId: {PayloadId} vs {CurrentId}, CandidateId: {PayloadCandId} vs {CurrentCandId})",
+                _logger.Debug("[{Type}] Payload match result: {IsMatch} (DoaCandidateId: {PayloadId} vs {CurrentId}, CandidateId: {PayloadCandId} vs {CurrentCandId})",
                     isMatch, payloadDoaCandidateId, doaCandidateId, doaCandidate.CandidateId, candidateId);
 
                 return isMatch;
             }
             catch (Exception ex)
             {
-                _logger.Warning(ex, "[EARTHMED] Error parsing payload for match check");
+                _logger.Warning(ex, "[{Type}] Error parsing payload for match check");
                 return false;
             }
         }

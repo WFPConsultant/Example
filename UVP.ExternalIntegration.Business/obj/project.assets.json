@@ -3959,13 +3959,13 @@
           "bin/placeholder/Koa.Serialization.Json.Newtonsoft.dll": {}
         }
       },
-      "UVP.Core.BPM.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Core.BPM.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.Core.BPM.Domain.dll": {}
@@ -4068,7 +4068,7 @@
           "bin/placeholder/UVP.Core.SEC.dll": {}
         }
       },
-      "UVP.Doa.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Doa.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4081,14 +4081,14 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.16",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.5",
           "Nito.AsyncEx": "5.1.2",
-          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Integration.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.User": "1.0.0-servicing-20251010-99",
+          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Integration.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Http.User": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
-          "UVP.User.Domain": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
+          "UVP.User.Domain": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.Doa.Domain.dll": {}
@@ -4097,7 +4097,7 @@
           "bin/placeholder/UVP.Doa.Domain.dll": {}
         }
       },
-      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251014-99": {
+      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4106,7 +4106,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.16",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.ExternalIntegration.Domain.dll": {}
@@ -4131,7 +4131,7 @@
           "bin/placeholder/UVP.ExternalIntegration.ErrorValidationFramework.dll": {}
         }
       },
-      "UVP.Integration.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Integration.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4139,9 +4139,9 @@
           "Koa.Domain.Specification": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Integration": "1.0.0-servicing-20251010-99"
         },
         "compile": {
@@ -4166,15 +4166,15 @@
           "bin/placeholder/UVP.Integration.PubSub.Hangfire.dll": {}
         }
       },
-      "UVP.MasterTables.Business/1.0.0-servicing-20251010-99": {
+      "UVP.MasterTables.Business/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "UVP.MasterTables.Domain": "1.0.0-servicing-20251010-99",
+          "UVP.MasterTables.Domain": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Identity": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Business": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Test.RandomHelpers": "1.0.0-servicing-20251010-99"
         },
@@ -4185,12 +4185,12 @@
           "bin/placeholder/UVP.MasterTables.Business.dll": {}
         }
       },
-      "UVP.MasterTables.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.MasterTables.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.MasterTables.Domain.dll": {}
@@ -4199,7 +4199,7 @@
           "bin/placeholder/UVP.MasterTables.Domain.dll": {}
         }
       },
-      "UVP.Shared.Event/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Event/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4209,7 +4209,7 @@
           "UVP.Core.Camunda": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Camunda": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Profile": "1.0.0-servicing-20251010-99"
         },
         "compile": {
@@ -4294,11 +4294,11 @@
           "bin/placeholder/UVP.Shared.Http.Integration.dll": {}
         }
       },
-      "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "UVP.MasterTables.Business": "1.0.0-servicing-20251010-99",
+          "UVP.MasterTables.Business": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Base": "1.0.0-servicing-20251010-99"
         },
         "compile": {
@@ -4323,17 +4323,17 @@
           "bin/placeholder/UVP.Shared.Http.Profile.dll": {}
         }
       },
-      "UVP.Shared.Http.User/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Http.User/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "UVP.Shared.Http.Base": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.Profile": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.User": "1.0.0-servicing-20251010-99",
-          "UVP.User.Domain": "1.0.0-servicing-20251010-99"
+          "UVP.User.Domain": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.Shared.Http.User.dll": {}
@@ -4420,7 +4420,7 @@
           "bin/placeholder/UVP.Shared.Micro.Domain.dll": {}
         }
       },
-      "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4429,7 +4429,7 @@
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.AuditLog": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Profile": "1.0.0-servicing-20251010-99",
@@ -4442,17 +4442,17 @@
           "bin/placeholder/UVP.Shared.Micro.Domain.Entities.dll": {}
         }
       },
-      "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Koa.Hosting.AspNetCore": "1.0.0-servicing-20251010-99",
-          "UVP.Doa.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Event": "1.0.0-servicing-20251010-99",
+          "UVP.Doa.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Event": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Calculator": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.Shared.Micro.Domain.Services.Contracts.dll": {}
@@ -4461,7 +4461,7 @@
           "bin/placeholder/UVP.Shared.Micro.Domain.Services.Contracts.dll": {}
         }
       },
-      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4483,16 +4483,16 @@
           "bin/placeholder/UVP.Shared.Micro.Entities.dll": {}
         }
       },
-      "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "Koa.Hosting.AspNetCore": "1.0.0-servicing-20251010-99",
           "UVP.Core.Graph": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Api.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "compile": {
           "bin/placeholder/UVP.Shared.Micro.Repositories.Contracts.dll": {}
@@ -4570,7 +4570,7 @@
           "bin/placeholder/UVP.Shared.Model.Constant.dll": {}
         }
       },
-      "UVP.Shared.Model.Doa/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Model.Doa/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4582,8 +4582,8 @@
           "UVP.Core.CQRS": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.BPM": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Business": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.BPM": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Shared": "1.0.0-servicing-20251010-99"
@@ -4716,7 +4716,7 @@
           "bin/placeholder/UVP.TaskProcessor.Domain.dll": {}
         }
       },
-      "UVP.User.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.User.Domain/1.0.0-servicing-20251016-99": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
@@ -4725,14 +4725,14 @@
           "Koa.Platform.Injection": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
-          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Integration.Domain": "1.0.0-servicing-20251010-99",
+          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Integration.Domain": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.User": "1.0.0-servicing-20251010-99"
         },
@@ -11869,7 +11869,7 @@
       "path": "../../../../Framework/Koa/Serialization/Json.Newtonsoft/Koa.Serialization.Json.Newtonsoft.csproj",
       "msbuildProject": "../../../../Framework/Koa/Serialization/Json.Newtonsoft/Koa.Serialization.Json.Newtonsoft.csproj"
     },
-    "UVP.Core.BPM.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Core.BPM.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Core/BPM/UVP.Core.BPM.Domain/UVP.Core.BPM.Domain.csproj",
       "msbuildProject": "../../../../Core/BPM/UVP.Core.BPM.Domain/UVP.Core.BPM.Domain.csproj"
@@ -11904,12 +11904,12 @@
       "path": "../../../../Core/UVP.Core.SEC/UVP.Core.SEC.csproj",
       "msbuildProject": "../../../../Core/UVP.Core.SEC/UVP.Core.SEC.csproj"
     },
-    "UVP.Doa.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Doa.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../Doa/UVP.Doa.Domain/UVP.Doa.Domain.csproj",
       "msbuildProject": "../../Doa/UVP.Doa.Domain/UVP.Doa.Domain.csproj"
     },
-    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251014-99": {
+    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../UVP.ExternalIntegration.Domain/UVP.ExternalIntegration.Domain.csproj",
       "msbuildProject": "../UVP.ExternalIntegration.Domain/UVP.ExternalIntegration.Domain.csproj"
@@ -11919,7 +11919,7 @@
       "path": "../UVP.ExternalIntegration.ErrorValidationFramework/UVP.ExternalIntegration.ErrorValidationFramework.csproj",
       "msbuildProject": "../UVP.ExternalIntegration.ErrorValidationFramework/UVP.ExternalIntegration.ErrorValidationFramework.csproj"
     },
-    "UVP.Integration.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Integration.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../Integration/UVP.Integration.Domain/UVP.Integration.Domain.csproj",
       "msbuildProject": "../../Integration/UVP.Integration.Domain/UVP.Integration.Domain.csproj"
@@ -11929,17 +11929,17 @@
       "path": "../../../../Core/UVP.Integration.PubSub.Hangfire/UVP.Integration.PubSub.Hangfire.csproj",
       "msbuildProject": "../../../../Core/UVP.Integration.PubSub.Hangfire/UVP.Integration.PubSub.Hangfire.csproj"
     },
-    "UVP.MasterTables.Business/1.0.0-servicing-20251010-99": {
+    "UVP.MasterTables.Business/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../MasterTables/UVP.MasterTables.Business/UVP.MasterTables.Business.csproj",
       "msbuildProject": "../../MasterTables/UVP.MasterTables.Business/UVP.MasterTables.Business.csproj"
     },
-    "UVP.MasterTables.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.MasterTables.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../MasterTables/UVP.MasterTables.Domain/UVP.MasterTables.Domain.csproj",
       "msbuildProject": "../../MasterTables/UVP.MasterTables.Domain/UVP.MasterTables.Domain.csproj"
     },
-    "UVP.Shared.Event/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Event/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Event/UVP.Shared.Event/UVP.Shared.Event.csproj",
       "msbuildProject": "../../../../Shared/Event/UVP.Shared.Event/UVP.Shared.Event.csproj"
@@ -11964,7 +11964,7 @@
       "path": "../../../../Shared/Http/UVP.Shared.Http.Integration/UVP.Shared.Http.Integration.csproj",
       "msbuildProject": "../../../../Shared/Http/UVP.Shared.Http.Integration/UVP.Shared.Http.Integration.csproj"
     },
-    "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Http/UVP.Shared.Http.MasterTables/UVP.Shared.Http.MasterTable.csproj",
       "msbuildProject": "../../../../Shared/Http/UVP.Shared.Http.MasterTables/UVP.Shared.Http.MasterTable.csproj"
@@ -11974,7 +11974,7 @@
       "path": "../../../../Shared/Http/UVP.Shared.Http.Profile/UVP.Shared.Http.Profile.csproj",
       "msbuildProject": "../../../../Shared/Http/UVP.Shared.Http.Profile/UVP.Shared.Http.Profile.csproj"
     },
-    "UVP.Shared.Http.User/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Http.User/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Http/UVP.Shared.Http.User/UVP.Shared.Http.User.csproj",
       "msbuildProject": "../../../../Shared/Http/UVP.Shared.Http.User/UVP.Shared.Http.User.csproj"
@@ -11999,22 +11999,22 @@
       "path": "../../../../Shared/Micro/UVP.Shared.Micro.Domain/UVP.Shared.Micro.Domain.csproj",
       "msbuildProject": "../../../../Shared/Micro/UVP.Shared.Micro.Domain/UVP.Shared.Micro.Domain.csproj"
     },
-    "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Micro/UVP.Shared.Micro.Domain.Entities/UVP.Shared.Micro.Domain.Entities.csproj",
       "msbuildProject": "../../../../Shared/Micro/UVP.Shared.Micro.Domain.Entities/UVP.Shared.Micro.Domain.Entities.csproj"
     },
-    "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Micro/UVP.Shared.Micro.Domain.Services.Contracts/UVP.Shared.Micro.Domain.Services.Contracts.csproj",
       "msbuildProject": "../../../../Shared/Micro/UVP.Shared.Micro.Domain.Services.Contracts/UVP.Shared.Micro.Domain.Services.Contracts.csproj"
     },
-    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Micro/UVP.Shared.Micro.Entities/UVP.Shared.Micro.Entities.csproj",
       "msbuildProject": "../../../../Shared/Micro/UVP.Shared.Micro.Entities/UVP.Shared.Micro.Entities.csproj"
     },
-    "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Micro/UVP.Shared.Micro.Repositories.Contracts/UVP.Shared.Micro.Repositories.Contracts.csproj",
       "msbuildProject": "../../../../Shared/Micro/UVP.Shared.Micro.Repositories.Contracts/UVP.Shared.Micro.Repositories.Contracts.csproj"
@@ -12044,7 +12044,7 @@
       "path": "../../../../Shared/Model/UVP.Shared.Model.Constant/UVP.Shared.Model.Constant.csproj",
       "msbuildProject": "../../../../Shared/Model/UVP.Shared.Model.Constant/UVP.Shared.Model.Constant.csproj"
     },
-    "UVP.Shared.Model.Doa/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Model.Doa/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../../../Shared/Model/UVP.Shared.Model.Doa/UVP.Shared.Model.Doa.csproj",
       "msbuildProject": "../../../../Shared/Model/UVP.Shared.Model.Doa/UVP.Shared.Model.Doa.csproj"
@@ -12084,7 +12084,7 @@
       "path": "../../TasksProcessor/UVP.TaskProcessor.Domain/UVP.TaskProcessor.Domain.csproj",
       "msbuildProject": "../../TasksProcessor/UVP.TaskProcessor.Domain/UVP.TaskProcessor.Domain.csproj"
     },
-    "UVP.User.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.User.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "path": "../../Doa/UVP.User.Domain/UVP.User.Domain.csproj",
       "msbuildProject": "../../Doa/UVP.User.Domain/UVP.User.Domain.csproj"
@@ -12104,11 +12104,11 @@
       "Serilog.AspNetCore >= 8.0.0",
       "StyleCop.Analyzers >= 1.1.118",
       "StyleCop.Analyzers.Unstable >= 1.1.1.114",
-      "UVP.ExternalIntegration.Domain >= 1.0.0-servicing-20251014-99",
+      "UVP.ExternalIntegration.Domain >= 1.0.0-servicing-20251016-99",
       "UVP.ExternalIntegration.ErrorValidationFramework >= 1.0.0-servicing-20251010-99",
-      "UVP.Shared.Micro.Domain.Services.Contracts >= 1.0.0-servicing-20251010-99",
-      "UVP.Shared.Micro.Entities >= 1.0.0-servicing-20251010-99",
-      "UVP.Shared.Model.Doa >= 1.0.0-servicing-20251010-99"
+      "UVP.Shared.Micro.Domain.Services.Contracts >= 1.0.0-servicing-20251016-99",
+      "UVP.Shared.Micro.Entities >= 1.0.0-servicing-20251016-99",
+      "UVP.Shared.Model.Doa >= 1.0.0-servicing-20251016-99"
     ]
   },
   "packageFolders": {
@@ -12116,7 +12116,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0-servicing-20251014-99",
+    "version": "1.0.0-servicing-20251016-99",
     "restore": {
       "projectUniqueName": "D:\\UNV Projects\\UVP\\UVP\\back\\dotnet\\src\\UVP\\UVP\\Micro\\ExternalIntegration\\UVP.ExternalIntegration.Business\\UVP.ExternalIntegration.Business.csproj",
       "projectName": "UVP.ExternalIntegration.Business",

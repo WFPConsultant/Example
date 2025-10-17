@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "UVP.ExternalIntegration.Business/1.0.0-servicing-20251013-99": {
+      "UVP.ExternalIntegration.Business/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "AutoMapper": "14.0.0",
           "Koa.Persistence.EntityRepository": "1.0.0-servicing-20251010-99",
@@ -20,11 +20,11 @@
           "Serilog.AspNetCore": "8.0.0",
           "StyleCop.Analyzers": "1.1.118",
           "StyleCop.Analyzers.Unstable": "1.1.1.114",
-          "UVP.ExternalIntegration.Domain": "1.0.0-servicing-20251013-99",
+          "UVP.ExternalIntegration.Domain": "1.0.0-servicing-20251016-99",
           "UVP.ExternalIntegration.ErrorValidationFramework": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Services.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Domain.Services.Contracts": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "Koa.Persistence.EntityRepository.EntityFrameworkCore.Reference": "1.0.0.0",
           "Koa.Persistence.EntityRepository.EntityFrameworkCore.Mapper.Reference": "1.0.0.0"
         },
@@ -2414,11 +2414,11 @@
           }
         }
       },
-      "UVP.Core.BPM.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Core.BPM.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.Core.BPM.Domain.dll": {
@@ -2509,7 +2509,7 @@
           }
         }
       },
-      "UVP.Doa.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Doa.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "Koa.Domain.Specification": "1.0.0-servicing-20251010-99",
@@ -2520,14 +2520,14 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.16",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.5",
           "Nito.AsyncEx": "5.1.2",
-          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Integration.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.User": "1.0.0-servicing-20251010-99",
+          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Integration.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Http.User": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
-          "UVP.User.Domain": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
+          "UVP.User.Domain": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.Doa.Domain.dll": {
@@ -2536,14 +2536,14 @@
           }
         }
       },
-      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251013-99": {
+      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Dapper": "2.1.66",
           "Koa.Platform.Injection": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.16",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.ExternalIntegration.Domain.dll": {
@@ -2566,15 +2566,15 @@
           }
         }
       },
-      "UVP.Integration.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.Integration.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "Koa.Domain.Specification": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Integration": "1.0.0-servicing-20251010-99"
         },
         "runtime": {
@@ -2597,13 +2597,13 @@
           }
         }
       },
-      "UVP.MasterTables.Business/1.0.0-servicing-20251010-99": {
+      "UVP.MasterTables.Business/1.0.0-servicing-20251016-99": {
         "dependencies": {
-          "UVP.MasterTables.Domain": "1.0.0-servicing-20251010-99",
+          "UVP.MasterTables.Domain": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Identity": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Business": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Test.RandomHelpers": "1.0.0-servicing-20251010-99"
         },
@@ -2614,10 +2614,10 @@
           }
         }
       },
-      "UVP.MasterTables.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.MasterTables.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.MasterTables.Domain.dll": {
@@ -2626,7 +2626,7 @@
           }
         }
       },
-      "UVP.Shared.Event/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Event/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Azure.Messaging.ServiceBus": "7.20.1",
           "Koa.Integration.PubSub.Azure.ServiceBus": "1.0.0-servicing-20251010-99",
@@ -2634,7 +2634,7 @@
           "UVP.Core.Camunda": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Camunda": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Profile": "1.0.0-servicing-20251010-99"
         },
         "runtime": {
@@ -2711,9 +2711,9 @@
           }
         }
       },
-      "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251016-99": {
         "dependencies": {
-          "UVP.MasterTables.Business": "1.0.0-servicing-20251010-99",
+          "UVP.MasterTables.Business": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Base": "1.0.0-servicing-20251010-99"
         },
         "runtime": {
@@ -2736,15 +2736,15 @@
           }
         }
       },
-      "UVP.Shared.Http.User/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Http.User/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "UVP.Shared.Http.Base": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.Profile": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.User": "1.0.0-servicing-20251010-99",
-          "UVP.User.Domain": "1.0.0-servicing-20251010-99"
+          "UVP.User.Domain": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.Shared.Http.User.dll": {
@@ -2823,14 +2823,14 @@
           }
         }
       },
-      "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Persistence.EntityRepository.AzureSearch": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.AuditLog": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Profile": "1.0.0-servicing-20251010-99",
@@ -2843,15 +2843,15 @@
           }
         }
       },
-      "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Hosting.AspNetCore": "1.0.0-servicing-20251010-99",
-          "UVP.Doa.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Event": "1.0.0-servicing-20251010-99",
+          "UVP.Doa.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Event": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Calculator": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.Shared.Micro.Domain.Services.Contracts.dll": {
@@ -2860,7 +2860,7 @@
           }
         }
       },
-      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
@@ -2880,14 +2880,14 @@
           }
         }
       },
-      "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Hosting.AspNetCore": "1.0.0-servicing-20251010-99",
           "UVP.Core.Graph": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Micro.Api.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99"
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99"
         },
         "runtime": {
           "UVP.Shared.Micro.Repositories.Contracts.dll": {
@@ -2955,7 +2955,7 @@
           }
         }
       },
-      "UVP.Shared.Model.Doa/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Model.Doa/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "Koa.Domain.Specification.Search": "1.0.0-servicing-20251010-99",
@@ -2965,8 +2965,8 @@
           "UVP.Core.CQRS": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Http.BPM": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Micro.Business": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.BPM": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.MasterTables": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.Shared": "1.0.0-servicing-20251010-99"
@@ -3085,21 +3085,21 @@
           }
         }
       },
-      "UVP.User.Domain/1.0.0-servicing-20251010-99": {
+      "UVP.User.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Koa.Domain": "1.0.0-servicing-20251010-99",
           "Koa.Domain.Specification": "1.0.0-servicing-20251010-99",
           "Koa.Platform.Injection": "1.0.0-servicing-20251010-99",
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
-          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251010-99",
-          "UVP.Integration.Domain": "1.0.0-servicing-20251010-99",
+          "UVP.Core.BPM.Domain": "1.0.0-servicing-20251016-99",
+          "UVP.Integration.Domain": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Http.Integration": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251010-99",
-          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Http.MasterTable": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Domain.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Micro.Repositories.Contracts": "1.0.0-servicing-20251016-99",
+          "UVP.Shared.Model.Doa": "1.0.0-servicing-20251016-99",
           "UVP.Shared.Model.Integration": "1.0.0-servicing-20251010-99",
           "UVP.Shared.Model.User": "1.0.0-servicing-20251010-99"
         },
@@ -3129,7 +3129,7 @@
     }
   },
   "libraries": {
-    "UVP.ExternalIntegration.Business/1.0.0-servicing-20251013-99": {
+    "UVP.ExternalIntegration.Business/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4648,7 +4648,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Core.BPM.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Core.BPM.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4683,12 +4683,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Doa.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Doa.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251013-99": {
+    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4698,7 +4698,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Integration.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.Integration.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4708,17 +4708,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.MasterTables.Business/1.0.0-servicing-20251010-99": {
+    "UVP.MasterTables.Business/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.MasterTables.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.MasterTables.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Event/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Event/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4743,7 +4743,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Http.MasterTable/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4753,7 +4753,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Http.User/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Http.User/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4778,22 +4778,22 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Domain.Entities/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Domain.Services.Contracts/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Repositories.Contracts/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4823,7 +4823,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Model.Doa/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Model.Doa/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -4863,7 +4863,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.User.Domain/1.0.0-servicing-20251010-99": {
+    "UVP.User.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

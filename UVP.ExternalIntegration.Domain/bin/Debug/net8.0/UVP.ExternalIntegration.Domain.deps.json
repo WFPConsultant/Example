@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251013-99": {
+      "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Dapper": "2.1.66",
           "Koa.Platform.Injection": "1.0.0-servicing-20251010-99",
@@ -15,7 +15,7 @@
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
           "StyleCop.Analyzers": "1.1.118",
           "StyleCop.Analyzers.Unstable": "1.1.1.114",
-          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251010-99",
+          "UVP.Shared.Micro.Entities": "1.0.0-servicing-20251016-99",
           "Koa.Persistence.EntityRepository.EntityFrameworkCore.Reference": "1.0.0.0",
           "Koa.Persistence.EntityRepository.EntityFrameworkCore.Mapper.Reference": "1.0.0.0"
         },
@@ -2207,7 +2207,7 @@
           }
         }
       },
-      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+      "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "8.0.16",
           "Microsoft.EntityFrameworkCore.Relational": "8.0.16",
@@ -2384,7 +2384,7 @@
     }
   },
   "libraries": {
-    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251013-99": {
+    "UVP.ExternalIntegration.Domain/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -3744,7 +3744,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251010-99": {
+    "UVP.Shared.Micro.Entities/1.0.0-servicing-20251016-99": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

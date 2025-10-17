@@ -1,12 +1,12 @@
 namespace UVP.ExternalIntegration.Domain.Entity.SystemsIntegration
 {
-    using System;
     using Microsoft.EntityFrameworkCore;
 
     [Keyless]
-    public class Doa
+    public class Assignment
     {
         public long Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public long DoaId { get; set; }
+        public string DutyStationCode { get; set; }
     }
 }

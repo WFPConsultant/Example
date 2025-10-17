@@ -10,11 +10,6 @@ namespace UVP.ExternalIntegration.Business.Services
     using Hangfire;
     using Serilog;
 
-    /// <summary>
-    /// IMPORTANT: Add this overload to IIntegrationRunnerService to keep initial (Swagger) flow intact:
-    /// Task ProcessInvocationAsync(long integrationInvocationId, IntegrationRequestDto bootstrapRequest);
-    /// Existing method ProcessInvocationAsync(long) remains for retries / queued runs.
-    /// </summary>
     public class InvocationManagerService : IInvocationManagerService
     {
         private readonly IIntegrationInvocationRepository _invocationRepo;
@@ -32,11 +27,6 @@ namespace UVP.ExternalIntegration.Business.Services
             _integrationRunner = integrationRunner;
         }
 
-        /// <summary>
-        /// Convenience overload kept for Swagger or any caller that has the two IDs handy.
-        /// NOTE: We DO NOT persist these IDs on the invocation row anymore.
-        /// They are only used to build/log the first RequestPayload during the initial run.
-        /// </summary>
         public async Task<long> CreateInvocationAsync(long doaCandidateId, long candidateId, string integrationType)
         {
             var request = new IntegrationRequestDto
@@ -49,12 +39,7 @@ namespace UVP.ExternalIntegration.Business.Services
 
             return await CreateInvocationAsync(request);
         }
-
-        /// <summary>
-        /// Create a minimal Invocation row (no DoaCandidateId/ReferenceId/ExternalReferenceId).
-        /// Immediately process the invocation ONCE with the provided bootstrap request,
-        /// so the runner can produce and log the initial RequestPayload (first log row).
-        /// </summary>
+       
         public async Task<long> CreateInvocationAsync(IntegrationRequestDto request)
         {
             try
@@ -78,10 +63,8 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 _logger.Information("Created invocation {InvocationId} for {IntegrationType}/{Operation}",
                     invocation.IntegrationInvocationId, invocation.IntegrationType, invocation.IntegrationOperation);
-
-                // IMPORTANT:
+                               
                 // For the very first execution we pass the bootstrap request DTO
-                // so the runner can compose and LOG the first request payload.
                 await _integrationRunner.ProcessInvocationAsync(invocation.IntegrationInvocationId, request);
 
                 return invocation.IntegrationInvocationId;

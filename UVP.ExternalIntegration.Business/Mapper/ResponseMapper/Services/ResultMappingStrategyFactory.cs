@@ -8,6 +8,7 @@ namespace UVP.ExternalIntegration.Business.Mapper.ResponseMapper.Services
     using Microsoft.Extensions.DependencyInjection;
     using Serilog;
     using UVP.ExternalIntegration.Business.Mapper.ResponseMapper.Interfaces;
+    using UVP.ExternalIntegration.Business.Mapper.ResponseMapper.Strategies;
 
     /// <summary>
     /// Factory that resolves result mapping strategies from DI container based on integration type

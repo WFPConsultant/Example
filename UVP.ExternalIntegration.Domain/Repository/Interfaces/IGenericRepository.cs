@@ -16,5 +16,6 @@ namespace UVP.ExternalIntegration.Domain.Repository.Interfaces
         Task UpdateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<int> SaveChangesAsync();
+        Task<T> GetSingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
     }
 }

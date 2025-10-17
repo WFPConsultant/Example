@@ -1,28 +1,27 @@
 namespace UVP.ExternalIntegration.Business.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using global::UVP.ExternalIntegration.Business.Interfaces;
     using global::UVP.ExternalIntegration.Domain.Entity.Integration;
     using global::UVP.ExternalIntegration.Domain.Enums;
     using global::UVP.ExternalIntegration.Domain.Integration.DTOs;
     using global::UVP.ExternalIntegration.Domain.Repository.Interfaces;
+    using global::UVP.Shared.Model.Doa;
     using Serilog;
 
     public class IntegrationOrchestrationService : IIntegrationOrchestrationService
     {
         private readonly IInvocationManagerService _invocationManager;
         private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
-        private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
+        private readonly IGenericRepository<DoaCandidateClearanceModel> _clearancesRepo;
         private readonly ILogger _logger = Log.ForContext<IntegrationOrchestrationService>();
 
         public IntegrationOrchestrationService(
             IInvocationManagerService invocationManager,
             IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
-            IGenericRepository<DoaCandidateClearances> clearancesRepo)
+            IGenericRepository<DoaCandidateClearanceModel> clearancesRepo)
         {
             _invocationManager = invocationManager;
             _clearancesOneHRRepo = clearancesOneHRRepo;
@@ -72,9 +71,11 @@ namespace UVP.ExternalIntegration.Business.Services
                     return false;
                 }
 
-                var clearance = (await _clearancesRepo.FindAsync(
-                    c => c.DoaCandidateId == doaCandidateId && c.RecruitmentClearanceCode == integrationType))
-                    .FirstOrDefault();
+                //var clearance = (await _clearancesRepo.FindAsync(
+                //    c => c.DoaCandidateId == doaCandidateId && c.RecruitmentClearanceCode == integrationType))
+                //    .FirstOrDefault();
+                var clearance = await _clearancesRepo.GetSingleOrDefaultAsync(
+    c => c.DoaCandidateId == doaCandidateId && c.RecruitmentClearance.Value.ToString() == integrationType);
 
                 if (clearance == null)
                 {
@@ -101,7 +102,7 @@ namespace UVP.ExternalIntegration.Business.Services
                 }
 
                 // If we have a response ID but not acknowledged, send acknowledgment (Cycle 3)
-                if (!string.IsNullOrEmpty(clearanceOneHR.RVCaseId) && clearance.StatusCode != "DELIVERED")
+                if (!string.IsNullOrEmpty(clearanceOneHR.RVCaseId) && clearance.RecruitmentClearance.Value.ToString() != "DELIVERED")
                 {
                     _logger.Information("Sending acknowledgment for response: {ResponseId}", clearanceOneHR.RVCaseId);
 

@@ -1,9 +1,7 @@
 namespace UVP.ExternalIntegration.Business.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using global::UVP.ExternalIntegration.Business.Interfaces;
     using global::UVP.ExternalIntegration.Business.Mapper.ResponseMapper.Interfaces;
@@ -22,7 +20,7 @@ namespace UVP.ExternalIntegration.Business.Services
         private readonly IGenericRepository<DoaCandidateClearances> _clearancesRepo;
         private readonly IGenericRepository<DoaCandidateClearancesOneHR> _clearancesOneHRRepo;
         private readonly IGenericRepository<IntegrationInvocationLog> _invocationLogRepo;
-        private readonly IGenericRepository<DoaCandidate> _doaCandidateRepo;
+        private readonly IGenericRepository<Candidate> _doaCandidateRepo;
         private readonly IResultMappingStrategyFactory _strategyFactory;
         private readonly IResultFieldExtractor _fieldExtractor;
         private readonly ILogger _logger = Log.ForContext<UnifiedResultMapperService>();
@@ -31,7 +29,7 @@ namespace UVP.ExternalIntegration.Business.Services
             IGenericRepository<DoaCandidateClearances> clearancesRepo,
             IGenericRepository<DoaCandidateClearancesOneHR> clearancesOneHRRepo,
             IGenericRepository<IntegrationInvocationLog> invocationLogRepo,
-            IGenericRepository<DoaCandidate> doaCandidateRepo,
+            IGenericRepository<Candidate> doaCandidateRepo,
             IResultFieldExtractor fieldExtractor,
             IResultMappingStrategyFactory strategyFactory)
         {
@@ -94,22 +92,67 @@ namespace UVP.ExternalIntegration.Business.Services
                 CandidateId = candidateId,
                 DoaCandidateClearanceId = requestId,
                 RequestedDate = DateTime.UtcNow,
+                CreatedDate = DateTime.UtcNow,
                 IsCompleted = false,
                 Retry = 0
             };
             await _clearancesOneHRRepo.AddAsync(oneHr);
             await _clearancesOneHRRepo.SaveChangesAsync();
 
-            // Create clearance summary record
-            var clearance = new DoaCandidateClearances
-            {
-                DoaCandidateId = doaCandidateId,
-                RecruitmentClearanceCode = strategy.SystemCode,
-                RequestedDate = DateTime.UtcNow,
-                StatusCode = "CLEARANCE_REQUESTED",
-                LinkDetailRemarks = $"clearanceRequestId={requestId}",
-                UpdatedDate = DateTime.UtcNow
-            };
+            //Create clearance summary record
+            var clearance = (await _clearancesRepo.FindAsync(
+                    c => c.DoaCandidateId == doaCandidateId &&
+                    c.RecruitmentClearanceCode == "MED_CLEAR"))
+                    .FirstOrDefault();
+
+            // Update existing record
+            clearance.RequestedDate = DateTime.UtcNow;
+            clearance.StatusCode = "CLEARANCE_REQUESTED";
+            clearance.LinkDetailRemarks = $"clearanceRequestId={requestId}";
+            clearance.UpdatedDate = DateTime.UtcNow;
+            clearance.CompletionDate = null;
+            clearance.Outcome = null;
+            await _clearancesRepo.UpdateAsync(clearance);
+            await _clearancesRepo.SaveChangesAsync();
+
+            //var clearance = new DoaCandidateClearances
+            //{
+            //    DoaCandidateId = doaCandidateId,
+            //    RecruitmentClearanceCode = strategy.SystemCode,
+            //    RecruitmentClearanceTableCode = "RecruitmentClearance",
+            //    RequestedDate = DateTime.UtcNow,
+            //    StatusCode = "CLEARANCE_REQUESTED",
+            //    LinkDetailRemarks = $"clearanceRequestId={requestId}",
+            //    CreatedDate = DateTime.UtcNow,
+            //    UpdatedDate = DateTime.UtcNow
+            //};
+
+            //var clearance = new DoaCandidateClearanceModel
+            //{
+            //    DoaCandidateId = doaCandidateId,
+            //    RecruitmentClearance = new MasterTableValueResultModel
+            //    {
+            //        Value = new MasterTableValue
+            //        {
+            //            Code = strategy.SystemCode,
+            //            TableCode = "RecruitmentClearance"
+            //        }
+            //    },
+            //    RequestedDate = DateTime.UtcNow,
+            //    Status = new MasterTableValueResultModel
+            //    {
+            //        Value = new MasterTableValue
+            //        {
+            //            Code = "CLEARANCE_REQUESTED",
+            //            TableCode = "ClearanceStatus" // You might need to adjust this TableCode
+            //        }
+            //    },
+            //    LinkDetailRemarks = $"clearanceRequestId={requestId}",
+            //    CreatedDate = DateTime.UtcNow,
+            //    CreationUser = "System", // You might want to set this
+            //    UpdatedDate = DateTime.UtcNow,
+            //    UpdateUser = "System" // You might want to set this
+            //};
             await _clearancesRepo.AddAsync(clearance);
             await _clearancesRepo.SaveChangesAsync();
 
@@ -208,6 +251,13 @@ namespace UVP.ExternalIntegration.Business.Services
                 c => c.DoaCandidateId == doaCandidateId && c.RecruitmentClearanceCode == strategy.SystemCode))
                 .FirstOrDefault();
 
+            //        var clearance = (await _clearancesRepo.FindAsync(
+            //c => c.DoaCandidateId == doaCandidateId
+            //&& c.RecruitmentClearance != null
+            //&& c.RecruitmentClearance.Value != null
+            //&& c.RecruitmentClearance.Value.Code == strategy.SystemCode))
+            //.FirstOrDefault();
+
             if (clearance != null)
             {
                 clearance.StatusCode = "DELIVERED";
@@ -219,6 +269,27 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 _logger.Information("[{System}] CYCLE 3 Complete: StatusCode=DELIVERED", strategy.SystemCode);
             }
+            //if (clearance != null)
+            //{
+            //    // Update the Status
+            //    clearance.Status = new MasterTableValueResultModel
+            //    {
+            //        Value = new MasterTableValue
+            //        {
+            //            Code = "DELIVERED",
+            //            TableCode = clearance.Status?.Value?.TableCode ?? "ClearanceStatus" // Preserve existing TableCode or use default
+            //        }
+            //    };
+
+            //    clearance.UpdatedDate = DateTime.UtcNow;
+            //    clearance.UpdateUser = "System"; // You might want to set this appropriately
+            //    clearance.AdditionalRemarks = AppendToRemarks(clearance.AdditionalRemarks, "Acknowledgement posted");
+
+            //    await _clearancesRepo.UpdateAsync(clearance);
+            //    await _clearancesRepo.SaveChangesAsync();
+
+            //    _logger.Information("[{System}] CYCLE 3 Complete: StatusCode=DELIVERED", strategy.SystemCode);
+            //}
         }
 
         private async Task UpdateStatusCompletionAsync(DoaCandidateClearancesOneHR oneHr, string? responseId,
@@ -244,6 +315,11 @@ namespace UVP.ExternalIntegration.Business.Services
                 .OrderByDescending(c => c.RequestedDate)
                 .FirstOrDefault();
 
+            //var clearance = (await _clearancesRepo.FindAsync(
+            //    c => c.DoaCandidateId == oneHr.DoaCandidateId && c.RecruitmentClearance.Value.Code == strategy.SystemCode))
+            //    .OrderByDescending(c => c.RequestedDate)
+            //    .FirstOrDefault();
+
             if (clearance != null)
             {
                 var completionCode = strategy.GetStatusCompletionCode();
@@ -263,8 +339,99 @@ namespace UVP.ExternalIntegration.Business.Services
 
                 _logger.Information("[{System}] Clearance updated: StatusCode={Status}", strategy.SystemCode, completionCode);
             }
+            //if (clearance != null)
+            //{
+            //    var completionCode = strategy.GetStatusCompletionCode();
+
+            //    // Update the Status
+            //    clearance.Status = new MasterTableValueResultModel
+            //    {
+            //        Value = new MasterTableValue
+            //        {
+            //            Code = completionCode,
+            //            TableCode = clearance.Status?.Value?.TableCode ?? "ClearanceStatus"
+            //        }
+            //    };
+
+            //    clearance.Outcome = strategy.RequiresAcknowledgeCycle ? null : "Complete";
+            //    clearance.CompletionDate = strategy.RequiresAcknowledgeCycle ? null : (statusDate ?? DateTime.UtcNow);
+
+            //    if (!string.IsNullOrWhiteSpace(responseId))
+            //    {
+            //        clearance.LinkDetailRemarks = AppendToRemarks(clearance.LinkDetailRemarks, $"clearanceResponseId={responseId}");
+            //    }
+
+            //    clearance.UpdatedDate = DateTime.UtcNow;
+            //    clearance.UpdateUser = "System"; // Set appropriately based on your context
+
+            //    await _clearancesRepo.UpdateAsync(clearance);
+            //    await _clearancesRepo.SaveChangesAsync();
+
+            //    _logger.Information("[{System}] Clearance updated: StatusCode={Status}", strategy.SystemCode, completionCode);
+            //}
         }
 
+        //private async Task<(long doaCandidateId, long candidateId)> ResolveIdsFromInvocationAsync(IntegrationInvocation invocation)
+        //{
+        //    var firstRequestLog = (await _invocationLogRepo.FindAsync(l =>
+        //            l.IntegrationInvocationId == invocation.IntegrationInvocationId &&
+        //            !string.IsNullOrWhiteSpace(l.RequestPayload)))
+        //        .OrderBy(l => l.LogSequence)
+        //        .FirstOrDefault();
+
+        //    if (firstRequestLog == null)
+        //    {
+        //        throw new InvalidOperationException($"No request payload found for invocation {invocation.IntegrationInvocationId}");
+        //    }
+
+        //    // Parse payload to extract IDs (simplified - extend based on your payload structure)
+        //    // This should use the KeyMappingProvider or similar logic from ModelLoaderService
+        //    var payload = JToken.Parse(firstRequestLog.RequestPayload);
+
+        //    // Extract based on your payload structure
+        //    long doaCandidateId = 0;
+        //    long candidateId = 0;
+
+        //    if (doaCandidateId == 0 && candidateId == 0)
+        //    {
+        //        // For EARTHMED: extract from ReferenceNumber (format: DoaId_DoaCandidateId) for CMTS the logic would be different
+        //        var referenceNumber = _fieldExtractor.TryGetStringFromJsonAnyDepth(payload, "ReferenceNumber");
+        //        var indexNumber = _fieldExtractor.TryGetStringFromJsonAnyDepth(payload, "IndexNumber");
+        //        if (!string.IsNullOrWhiteSpace(referenceNumber) && referenceNumber.Contains("_"))
+        //        {
+        //            var parts = referenceNumber.Split('_');
+        //            if (parts.Length == 2 &&
+        //                long.TryParse(parts[0], out var doaId) &&
+        //                long.TryParse(parts[1], out var doaCanId))
+        //            {
+
+        //                // For EARTHMED, we need to get CandidateId from DoaCandidateClearancesOneHR
+
+        //                var candidate = (await _doaCandidateRepo.FindAsync(x => x.Id == doaId))
+        //                .FirstOrDefault();
+        //                if (candidateId == null)
+        //                {
+        //                    if (!string.IsNullOrWhiteSpace(indexNumber) && long.TryParse(indexNumber, out var parsedIndexNumber))
+        //                    {
+        //                        candidateId = parsedIndexNumber;
+        //                    }
+        //                }
+
+        //                if (candidateId != null || doaCanId != null)
+        //                {
+        //                    _logger.Information("[{System}] Resolved from ReferenceNumber: DoaId={DoaId}, DoaCandidateId={DoaCandidateId}, CandidateId={CandidateId}",
+        //                        doaId, doaCandidateId, candidate.Id);
+        //                    return (doaCanId, candidate.Id);
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    // Add extraction logic here based on your payload format
+        //    // This is a placeholder - implement based on actual payload structure
+
+        //    return (doaCandidateId, candidateId);
+        //}
         private async Task<(long doaCandidateId, long candidateId)> ResolveIdsFromInvocationAsync(IntegrationInvocation invocation)
         {
             var firstRequestLog = (await _invocationLogRepo.FindAsync(l =>
@@ -286,39 +453,54 @@ namespace UVP.ExternalIntegration.Business.Services
             long doaCandidateId = 0;
             long candidateId = 0;
 
-            if (doaCandidateId == 0 && candidateId == 0)
+            // ✏️ CORRECTED: Extract from ReferenceNumber and IndexNumber
+            var referenceNumber = _fieldExtractor.TryGetStringFromJsonAnyDepth(payload, "ReferenceNumber");
+            var indexNumber = _fieldExtractor.TryGetStringFromJsonAnyDepth(payload, "IndexNumber");
+
+            if (!string.IsNullOrWhiteSpace(referenceNumber) && referenceNumber.Contains("_"))
             {
-                // For EARTHMED: extract from ReferenceNumber (format: DoaId_DoaCandidateId) for CMTS the logic would be different
-                var referenceNumber = _fieldExtractor.TryGetStringFromJsonAnyDepth(payload, "ReferenceNumber");
-                if (!string.IsNullOrWhiteSpace(referenceNumber) && referenceNumber.Contains("_"))
+                var parts = referenceNumber.Split('_');
+                if (parts.Length == 2 &&
+                    long.TryParse(parts[0], out var doaId) &&  // ✏️ First part is DoaCandidateId
+                    long.TryParse(parts[1], out var doaCanId))       // ✏️ Second part is DoaId
                 {
-                    var parts = referenceNumber.Split('_');
-                    if (parts.Length == 2 &&
-                        long.TryParse(parts[0], out var doaId) &&
-                        long.TryParse(parts[1], out var doaCanId))
-                    {
+                    doaCandidateId = doaCanId;
 
-                        // For EARTHMED, we need to get CandidateId from DoaCandidateClearancesOneHR
-
-                        var candidate = (await _doaCandidateRepo.FindAsync(x => x.DoaId == doaId))
+                    // ✏️ For EARTHMED, get CandidateId from DoaCandidate table using DoaId
+                    var candidate = (await _doaCandidateRepo.FindAsync(x => x.Id == doaId))
                         .FirstOrDefault();
 
-                        if (candidate != null)
-                        {
-                            _logger.Information("[EARTHMED] Resolved from ReferenceNumber: DoaId={DoaId}, DoaCandidateId={DoaCandidateId}, CandidateId={CandidateId}",
-                                doaId, doaCandidateId, candidate.CandidateId);
-                            return (doaCanId, candidate.CandidateId);
-                        }
+                    if (candidate != null)
+                    {
+                        candidateId = candidate.Id;
+
+                        _logger.Information("[EARTHMED] Resolved from ReferenceNumber: DoaId={DoaId}, DoaCandidateId={DoaCandidateId}, CandidateId={CandidateId}",
+                            doaId, doaCandidateId, candidateId);
+
+                        return (doaCandidateId, candidateId);
+                    }
+                    else
+                    {
+                        _logger.Warning("[EARTHMED] DoaCandidate not found for DoaId={DoaId}", doaId);
                     }
                 }
             }
 
-            // Add extraction logic here based on your payload format
-            // This is a placeholder - implement based on actual payload structure
+            // ✏️ Fallback: Try to get candidateId from IndexNumber if ReferenceNumber parsing failed
+            if (candidateId == 0 && !string.IsNullOrWhiteSpace(indexNumber) && long.TryParse(indexNumber, out var parsedIndexNumber))
+            {
+                candidateId = parsedIndexNumber;
+                _logger.Information("[EARTHMED] Resolved CandidateId from IndexNumber: {CandidateId}", candidateId);
+            }
+
+            // ✏️ Return whatever we could resolve
+            if (doaCandidateId == 0 && candidateId == 0)
+            {
+                _logger.Warning("[EARTHMED] Could not resolve IDs from payload for invocation {InvocationId}", invocation.IntegrationInvocationId);
+            }
 
             return (doaCandidateId, candidateId);
         }
-
         private async Task<string?> GetLatestRequestPayloadAsync(long invocationId)
         {
             var log = (await _invocationLogRepo.FindAsync(l =>
